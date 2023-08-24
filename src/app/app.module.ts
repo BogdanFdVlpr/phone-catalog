@@ -11,7 +11,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { FooterComponent } from './UI/footer/footer.component';
 import { PictureSliderComponent } from './components/picture-slider/picture-slider.component';
 import {FormsModule} from "@angular/forms";
-import { ProductsSliderComponent } from './components/products-slider/products-slider.component';
+import { ProductsComponent } from './components/products/products.component';
 import {HttpClientModule} from "@angular/common/http";
 import { PhonesPageComponent } from './pages/phones-page/phones-page.component';
 import { TabletsPageComponent } from './pages/tablets-page/tablets-page.component';
@@ -29,7 +29,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     HomePageComponent,
     FooterComponent,
     PictureSliderComponent,
-    ProductsSliderComponent,
+    ProductsComponent,
     PhonesPageComponent,
     TabletsPageComponent,
     AccessoriesPageComponent,

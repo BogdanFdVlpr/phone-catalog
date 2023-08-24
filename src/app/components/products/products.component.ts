@@ -1,21 +1,21 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, Output} from '@angular/core';
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
-import {delay, Subscription} from "rxjs";
+import {delay} from "rxjs";
 
 @Component({
-  selector: 'app-products-slider',
-  templateUrl: './products-slider.component.html',
-  styleUrls: ['./products-slider.component.scss']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
 
-export class ProductsSliderComponent implements OnInit {
+export class ProductsComponent implements OnInit {
   @Input() title!: string;
   @Input() oldPrice?: boolean;
   @Input() sortProduct?: string;
   @Input() buttonScroll?: boolean;
   @Input() flexWrap?: boolean;
-  @Input() changeLoading?: boolean;
+  @Input() isLoading?: boolean;
 
   products: IProducts[] = [];
 
@@ -30,14 +30,14 @@ export class ProductsSliderComponent implements OnInit {
         this.products = this.sortProducts(products);
       })
     } else {
-      console.log(`'product-slider:' ${this.changeLoading}`)
+      console.log(`'product-slider:' ${this.isLoading}`)
 
       this.getProductService.getAllProducts().pipe(
         delay(2000),
       ).subscribe(products => {
         this.products = products;
-        this.changeLoading = false
-        console.log(`'product-slider:' ${this.changeLoading}`)
+        this.isLoading = false;
+        console.log(`'product-slider:' ${this.isLoading}`)
       });
     }
   };
@@ -53,10 +53,10 @@ export class ProductsSliderComponent implements OnInit {
 
   scrollCardsRight() {
     const cardsElement = this.elementRef.nativeElement.querySelector('.cards');
-    cardsElement.scrollLeft += 288;
+    cardsElement.scrollLeft += 289;
   }
   scrollCardsLeft() {
     const cardsElement = this.elementRef.nativeElement.querySelector('.cards');
-    cardsElement.scrollLeft -= 288;
+    cardsElement.scrollLeft -= 289;
   }
 }
