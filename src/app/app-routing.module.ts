@@ -1,9 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomePageComponent} from "./pages/home-page/home-page.component";
+import {PhonesPageComponent} from "./pages/phones-page/phones-page.component";
+import {TabletsPageComponent} from "./pages/tablets-page/tablets-page.component";
+import {AccessoriesPageComponent} from "./pages/accessories-page/accessories-page.component";
+import {FavoritesPageComponent} from "./pages/favorites-page/favorites-page.component";
+import {CartPageComponent} from "./pages/cart-page/cart-page.component";
 
 const routes: Routes = [
-  {path: '', component: HomePageComponent}
+  {path: '', component: HomePageComponent},
+  {path: 'phones', component: PhonesPageComponent},
+  {path: 'tablets', component: TabletsPageComponent},
+  {path: 'accessories', component: AccessoriesPageComponent},
+  {path: 'favorites', component: FavoritesPageComponent},
+  {path: 'cart', component: CartPageComponent},
 ];
 
 @NgModule({
