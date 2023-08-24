@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
 import {delay, Subscription} from "rxjs";
