@@ -9,7 +9,7 @@
   color: var(--graySecondary);
   border-bottom: 1px solid var(--graySecondary);
   border-top: 1px solid var(--graySecondary);
-  padding: 0 24px;
+  padding: 0 0 0 24px;
 
   &-nav {
     display: flex;
@@ -30,6 +30,14 @@
   }
 }
 
+.header-nav__content a.active-nav {
+  border-bottom: 3px solid var(--grayPrimary);
+  color: var(--grayPrimary);
+  width: max-content;
+}
+
+
+
 .header-icons {
   margin: -2px 0;
 }
@@ -37,15 +45,14 @@
 .header-icon {
   border: 1px solid var(--graySecondary);
   padding: 24.5px 24px;
-  height: 16px;
-  width: 16px;
+  height: 19px;
+  width: 19px;
+
+  &:last-child {
+    border-right: none;
+  }
 
   &:hover {
     border: 1px solid var(--grayPrimary);
-  }
-
-  &:last-child {
-    margin-right: -24px;
-    border-right: none;
   }
 }

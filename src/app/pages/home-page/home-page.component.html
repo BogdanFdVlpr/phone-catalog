@@ -1,3 +1,44 @@
 <app-picture-slider></app-picture-slider>
 
-<app-products-slider></app-products-slider>
+<app-products-slider
+  title="Hot prices"
+  [oldPrice]="true"
+  [buttonScroll]="true"
+  sortProduct="hotPrice"
+></app-products-slider>
+
+<div class="shop-category">
+  <h1>Shop by category</h1>
+
+    <div class="shop-category-cards">
+        <div class="shop-category-card">
+          <a routerLink="/phones">
+            <img src="assets/img/category-phones.png" alt="">
+            <p class="shop-category-name">Mobile phones</p>
+            <p class="shop-category-quantity">{{ this.quantityPhones }} models</p>
+          </a>
+        </div>
+
+        <div class="shop-category-card">
+          <a routerLink="/tablets">
+            <img src="assets/img/category-tablets.png" alt="">
+            <p class="shop-category-name">Tablets</p>
+            <p class="shop-category-quantity">{{this.quantityTablets}} models</p>
+          </a>
+        </div>
+
+        <div class="shop-category-card">
+          <a routerLink="/accessories">
+            <img src="assets/img/category-accessories.png" alt="">
+            <p class="shop-category-name">Accessories</p>
+            <p class="shop-category-quantity">{{this.quantityAccessories}} models</p>
+          </a>
+        </div>
+    </div>
+</div>
+
+<app-products-slider
+  title="Brand new models"
+  sortProduct="newProduct"
+  [buttonScroll]="true"
+></app-products-slider>

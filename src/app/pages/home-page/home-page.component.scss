@@ -1,0 +1,39 @@
+h1 {
+  font-size: 32px;
+}
+
+.shop-category {
+  margin: 80px auto 0;
+  max-width: 1136px;
+
+  &-cards {
+    margin-top: 26px;
+    display: flex;
+  }
+
+  &-card {
+
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+
+    img {
+      width: 368px;
+      height: 368px;
+      object-position: top;
+    }
+  }
+
+  &-name {
+    margin-top: 24px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--grayPrimary);
+  }
+
+  &-quantity {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--graySecondary);
+  }
+}
