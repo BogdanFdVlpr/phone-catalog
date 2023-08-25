@@ -7,7 +7,7 @@
   <app-products
     [flexWrap]="true"
     [oldPrice]="true"
-    [isLoading]="isLoading"
+    (isLoadingChange)="isLoading = $event"
   ></app-products>
 
 </div>

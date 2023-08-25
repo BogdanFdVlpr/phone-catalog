@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
 import {delay} from "rxjs";
@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
   @Input() sortProduct?: string;
   @Input() buttonScroll?: boolean;
   @Input() flexWrap?: boolean;
-  @Input() isLoading?: boolean;
+  @Output() isLoadingChange = new EventEmitter<boolean>();
 
   products: IProducts[] = [];
 
@@ -30,14 +30,11 @@ export class ProductsComponent implements OnInit {
         this.products = this.sortProducts(products);
       })
     } else {
-      console.log(`'product-slider:' ${this.isLoading}`)
-
       this.getProductService.getAllProducts().pipe(
         delay(2000),
       ).subscribe(products => {
         this.products = products;
-        this.isLoading = false;
-        console.log(`'product-slider:' ${this.isLoading}`)
+        this.isLoadingChange.emit(false);
       });
     }
   };
