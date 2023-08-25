@@ -15,7 +15,9 @@ export class ProductsComponent implements OnInit {
   @Input() sortProduct?: string;
   @Input() buttonScroll?: boolean;
   @Input() flexWrap?: boolean;
+  @Input() marginTopClass = '';
   @Output() isLoadingChange = new EventEmitter<boolean>();
+
 
   products: IProducts[] = [];
 
@@ -31,7 +33,7 @@ export class ProductsComponent implements OnInit {
       })
     } else {
       this.getProductService.getAllProducts().pipe(
-        delay(2000),
+        delay(1000),
       ).subscribe(products => {
         this.products = products;
         this.isLoadingChange.emit(false);
