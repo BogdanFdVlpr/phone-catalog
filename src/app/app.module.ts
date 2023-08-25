@@ -21,6 +21,7 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingComponent } from './helpers/loading/loading.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SortItemsOnPageComponent } from './helpers/sort-items-on-page/sort-items-on-page.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FavoritesPageComponent,
     CartPageComponent,
     LoadingComponent,
+    SortItemsOnPageComponent,
   ],
   imports: [
     BrowserModule,
