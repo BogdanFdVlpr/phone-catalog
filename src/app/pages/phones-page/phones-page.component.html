@@ -1,17 +1,13 @@
-
+<app-loading *ngIf="isLoading"></app-loading>
 
 <div class="phones">
   <h1>Mobile phones</h1>
   <p class="phones-quantity">{{ this.quantityPhones }} models</p>
 
-  <app-loading *ngIf="isLoading"></app-loading>
-
-  <app-products-slider
+  <app-products
     [flexWrap]="true"
     [oldPrice]="true"
-    [changeLoading]="isLoading"
-    *ngIf="isLoading"
-  ></app-products-slider>
-
+    [isLoading]="isLoading"
+  ></app-products>
 </div>
 

@@ -1,0 +1,19 @@
+h1  {
+  font-size: 32px;
+  font-weight: 700;
+  word-wrap: break-word;
+  color: var(--grayPrimary);
+  margin-top: 40px;
+}
+
+.phones {
+  max-width: 1156px;
+  margin: auto;
+
+  &-quantity {
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--graySecondary);
+    margin-top: 10px;
+  }
+}

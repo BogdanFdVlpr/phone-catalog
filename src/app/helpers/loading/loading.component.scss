@@ -1,0 +1,18 @@
+.loading {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--gray);
+
+  mat-spinner {
+    top: 50%;
+    margin: auto;
+    transform: translateY(-50%);
+  }
+}
+
+:host ::ng-deep .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: gray;
+}
