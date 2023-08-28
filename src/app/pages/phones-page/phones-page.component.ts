@@ -10,7 +10,9 @@ import {load} from "@angular-devkit/build-angular/src/utils/server-rendering/esm
   styleUrls: ['./phones-page.component.scss']
 })
 export class PhonesPageComponent implements OnInit{
+
   isLoading: boolean = true;
+  products?: IProducts[];
 
   quantityPhones: number = 0;
 
@@ -22,6 +24,7 @@ export class PhonesPageComponent implements OnInit{
   ngOnInit(): void {
     this.getProductService.getAllProducts().subscribe( (products) => {
       this.quantityPhones = this.quantityGoodsService.calculateQuantity(products, 'phones')
+      console.log(`phones page: ${this.products} `)
     })
   }
 }

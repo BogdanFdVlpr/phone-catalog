@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
-import {delay} from "rxjs";
+import {async, delay} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -17,9 +17,11 @@ export class ProductsComponent implements OnInit {
   @Input() flexWrap?: boolean;
   @Input() marginTopClass = '';
   @Output() isLoadingChange = new EventEmitter<boolean>();
+  @Output() array = new EventEmitter<IProducts[]>();
 
 
   products: IProducts[] = [];
+
 
   constructor(
     public getProductService: GetProductService,
@@ -36,6 +38,7 @@ export class ProductsComponent implements OnInit {
         delay(1000),
       ).subscribe(products => {
         this.products = products;
+        this.array.emit(this.products)
         this.isLoadingChange.emit(false);
       });
     }

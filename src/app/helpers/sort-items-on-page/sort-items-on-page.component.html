@@ -1,8 +1,8 @@
 <div class="sorting">
   <p class="sorting-name">Sort by</p>
-  <select name="select" class="select">
-    <option value="value1" selected>Newest</option>
-    <option value="value2">Name</option>
-    <option value="value3">Price</option>
+  <select name="select" class="select" (change)="sortArray($event)">
+    <option value="age" selected>Newest</option>
+    <option value="name">Alphabetically</option>
+    <option value="price">Cheapest</option>
   </select>
 </div>

@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingComponent } from './helpers/loading/loading.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SortItemsOnPageComponent } from './helpers/sort-items-on-page/sort-items-on-page.component';
+import { SmallNavigationComponent } from './components/small-navigation/small-navigation.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SortItemsOnPageComponent } from './helpers/sort-items-on-page/sort-item
     CartPageComponent,
     LoadingComponent,
     SortItemsOnPageComponent,
+    SmallNavigationComponent,
   ],
   imports: [
     BrowserModule,
