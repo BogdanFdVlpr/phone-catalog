@@ -6,5 +6,14 @@ import {Component} from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  cartPageOpen = false;
 
+  activateCartPageOpen() {
+    this.cartPageOpen = true;
+  }
+
+
+  clearCartPageOpen() {
+    this.cartPageOpen = false;
+  }
 }

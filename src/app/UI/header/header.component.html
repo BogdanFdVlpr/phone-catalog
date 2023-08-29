@@ -1,7 +1,7 @@
 <nav class="header" id="header">
   <div class="header-nav">
-    <img routerLink="/" src="../../../assets/img/icons/Logo.svg" alt="Logo" class="logo">
-    <div class="header-nav__content">
+    <img routerLink="/" src="../../../assets/img/icons/Logo.svg" alt="Logo" class="logo" (click)="clearCartPageOpen()">
+    <div class="header-nav__content" [class.display--none]="cartPageOpen">
       <a routerLinkActive="active-nav" routerLink="/" [routerLinkActiveOptions]="{exact: true}">HOME</a>
       <a routerLinkActive="active-nav" routerLink="phones">PHONES</a>
       <a routerLinkActive="active-nav" routerLink="tablets">TABLETS</a>
@@ -9,10 +9,10 @@
     </div>
   </div>
   <div class="header-icons">
-    <a routerLink="favorites">
+    <a routerLink="favorites" [class.display--none]="cartPageOpen">
       <img routerLinkActive="active-nav" class="header-icon" src="../../../assets/img/icons/heart-icon.svg" alt="heart icon" >
     </a>
-    <a routerLink="cart">
+    <a routerLink="cart" (click)="activateCartPageOpen()">
       <img routerLinkActive="active-nav" class="header-icon" src="../../../assets/img/icons/basket-icon.svg" alt="basket icon">
     </a>
   </div>
