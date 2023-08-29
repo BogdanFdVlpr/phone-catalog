@@ -1,0 +1,17 @@
+.small-navigation {
+  max-width: 1156px;
+  margin: 24px auto 40px;
+  display: flex;
+  align-items: center;
+
+  &__item:not(:first-child) {
+    margin-left: 8px;
+  }
+}
+
+.link {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--graySecondary);
+}

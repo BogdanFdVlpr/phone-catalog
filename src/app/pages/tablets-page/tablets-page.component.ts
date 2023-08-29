@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./tablets-page.component.scss']
 })
 export class TabletsPageComponent {
-
+  // isLoading: boolean = true;
 }

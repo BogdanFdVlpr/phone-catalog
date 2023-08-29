@@ -1,11 +1,19 @@
 .sorting {
   margin-top: 40px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  flex-shrink: 0;
-  gap: 4px;
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    flex-shrink: 0;
+
+    &:not(:first-child) {
+      margin-left: 16px;
+    }
+  }
 
   &-name {
     color: var(--graySecondary);
