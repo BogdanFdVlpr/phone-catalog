@@ -23,6 +23,7 @@ import { LoadingComponent } from './helpers/loading/loading.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SortItemsOnPageComponent } from './helpers/sort-items-on-page/sort-items-on-page.component';
 import { SmallNavigationComponent } from './components/small-navigation/small-navigation.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SmallNavigationComponent } from './components/small-navigation/small-na
     HttpClientModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

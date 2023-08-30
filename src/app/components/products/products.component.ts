@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
-import {async, delay} from "rxjs";
+import  {delay} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit {
       this.getProductService.getAllProducts().pipe(
         delay(1000),
       ).subscribe(products => {
-        this.products = products;
+        this.products = products.sort((a, b) => b.year - a.year);
         this.array.emit(this.products)
         this.isLoadingChange.emit(false);
       });

@@ -29,6 +29,14 @@
       }
     }
   }
+
+  &-search {
+    box-sizing: border-box;
+    width: 327px;
+    padding: 24px;
+    outline: none;
+    border: 1px solid var(--gray);
+  }
 }
 
 .header-nav__content a.active-nav,
@@ -41,6 +49,7 @@
 
 .header-icons {
   margin: auto 0;
+  display: flex;
   //border-left: 1px solid var(--graySecondary);
 }
 

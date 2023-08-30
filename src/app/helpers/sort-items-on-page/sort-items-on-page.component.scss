@@ -40,3 +40,21 @@ select {
   padding: 10px 12px;
 }
 
+:host ::ng-deep mat-paginator {
+  z-index: 1;
+}
+
+:host ::ng-deep .mat-mdc-paginator-page-size-label {
+  display: none;
+}
+
+:host ::ng-deep .mat-mdc-paginator-outer-container {
+  width: 965px;
+}
+
+:host ::ng-deep .mat-mdc-paginator-container {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+

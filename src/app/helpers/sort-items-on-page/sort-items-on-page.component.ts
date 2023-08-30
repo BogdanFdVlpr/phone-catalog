@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {IProducts} from "../../models/product";
 
 @Component({
@@ -11,7 +11,8 @@ export class SortItemsOnPageComponent implements OnInit{
   @Output() sortedArray?: IProducts[];
 
   sortingValue = ''
-  constructor(private elementRef: ElementRef) {
+
+  constructor() {
   }
   ngOnInit(): void {
   }

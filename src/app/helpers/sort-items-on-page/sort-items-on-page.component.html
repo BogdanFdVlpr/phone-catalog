@@ -10,12 +10,11 @@
 
   <div class="sorting-container">
     <p class="sorting-name">Items on page</p>
-    <select name="select" class="select" >
-      <option value="all" selected>All</option>
-      <option value="four">4</option>
-      <option value="eight">8</option>
-      <option value="sixteen">16</option>
-    </select>
+    <mat-paginator [length]="array!.length"
+                   [pageSize]="array!.length"
+                   [pageSizeOptions]="[array!.length, 16, 8, 4]"
+                   aria-label="Select page">
+    </mat-paginator>
   </div>
 
 </div>
