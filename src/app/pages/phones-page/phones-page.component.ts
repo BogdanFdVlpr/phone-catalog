@@ -1,8 +1,7 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuantityGoodsService} from "../../services/quantityGoods.service";
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
-import {load} from "@angular-devkit/build-angular/src/utils/server-rendering/esm-in-memory-file-loader";
 
 @Component({
   selector: 'app-phones-page',
@@ -24,7 +23,6 @@ export class PhonesPageComponent implements OnInit{
   ngOnInit(): void {
     this.getProductService.getAllProducts().subscribe( (products) => {
       this.quantityPhones = this.quantityGoodsService.calculateQuantity(products, 'phones')
-      console.log(`phones page: ${this.products} `)
     })
   }
 }

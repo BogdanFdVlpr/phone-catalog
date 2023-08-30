@@ -8,11 +8,11 @@
     </select>
   </div>
 
-  <div class="sorting-container">
+  <div class="sorting-container" *ngIf="array">
     <p class="sorting-name">Items on page</p>
-    <mat-paginator [length]="array!.length"
-                   [pageSize]="array!.length"
-                   [pageSizeOptions]="[array!.length, 16, 8, 4]"
+    <mat-paginator [length]="array.length"
+                   [pageSize]="array.length"
+                   [pageSizeOptions]="[array.length, 16, 8, 4]"
                    aria-label="Select page">
     </mat-paginator>
   </div>
