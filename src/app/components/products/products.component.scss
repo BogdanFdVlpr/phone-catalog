@@ -117,12 +117,6 @@ button {
     margin-top: 16px;
     display: flex;
     justify-content: space-between;
-
-    img {
-      padding: 12px;
-      border: 1px solid var(--grayPrimary);
-      cursor: pointer;
-    }
   }
 
   &-button-add {
@@ -153,6 +147,18 @@ button {
     margin-left: 8px;
     margin-bottom: 8.5px;
     text-decoration: line-through;
+  }
+}
+
+.heart-icon {
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid var(--grayPrimary);
+  cursor: pointer;
+  background: url("/assets/img/icons/heart-icon.svg") center no-repeat;
+
+  &--active {
+    background: url("/assets/img/icons/heart-red-icon.svg") center no-repeat;
   }
 }
 

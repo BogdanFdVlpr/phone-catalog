@@ -2,6 +2,7 @@ import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angul
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
 import  {delay} from "rxjs";
+import * as events from "events";
 
 @Component({
   selector: 'app-products',
@@ -60,5 +61,15 @@ export class ProductsComponent implements OnInit {
   scrollCardsLeft() {
     const cardsElement = this.elementRef.nativeElement.querySelector('.cards');
     cardsElement.scrollLeft -= 289;
+  }
+
+  addToFavorite(event: MouseEvent) {
+    const heartIcon = event.target as HTMLElement;
+
+    if (heartIcon.classList.contains('heart-icon--active')) {
+      heartIcon.classList.remove('heart-icon--active');
+    } else {
+      heartIcon.classList.add('heart-icon--active');
+    }
   }
 }
