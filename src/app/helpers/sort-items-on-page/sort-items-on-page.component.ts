@@ -19,7 +19,6 @@ export class SortItemsOnPageComponent implements OnInit{
 
   sortArray(event: any) {
     this.sortingValue = event.target.value;
-    // console.log(this.pageSize)
     if (this.sortingValue === 'age') {
       return this.sortedArray = this.array?.sort((a, b) => b.year - a.year)
     } else if (this.sortingValue === 'name') {
