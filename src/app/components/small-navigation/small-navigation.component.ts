@@ -1,13 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
+import {GetTitleUrlService} from "../../services/getTitleUrl.service";
 
 @Component({
   selector: 'app-small-navigation',
   templateUrl: './small-navigation.component.html',
   styleUrls: ['./small-navigation.component.scss']
 })
-export class SmallNavigationComponent{
+export class SmallNavigationComponent implements OnInit{
 
-  constructor() {}
+  linkTitle?: string[]
 
-  headerLink = window.location.href.split('/', ).splice(3, 4)
+  constructor(
+    private getTitleUrlService: GetTitleUrlService,
+  ) {}
+
+  ngOnInit(): void {
+    this.getTitleUrlService.headerLink$.subscribe((linkTitle) => this.linkTitle = linkTitle)
+    }
 }

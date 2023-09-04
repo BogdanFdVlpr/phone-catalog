@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {QuantityGoodsService} from "../../services/quantityGoods.service";
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
+import {GetTitleUrlService} from "../../services/getTitleUrl.service";
 
 @Component({
   selector: 'app-phones-page',
@@ -9,6 +10,7 @@ import {IProducts} from "../../models/product";
   styleUrls: ['./phones-page.component.scss']
 })
 export class PhonesPageComponent implements OnInit{
+  linkTitle?: string[];
 
   isLoading: boolean = true;
   products?: IProducts[];
@@ -18,11 +20,13 @@ export class PhonesPageComponent implements OnInit{
   constructor(
     public getProductService: GetProductService,
     public quantityGoodsService: QuantityGoodsService,
+
   ) { }
 
   ngOnInit(): void {
     this.getProductService.getAllProducts().subscribe( (products) => {
       this.quantityPhones = this.quantityGoodsService.calculateQuantity(products, 'phones')
     })
+
   }
 }
