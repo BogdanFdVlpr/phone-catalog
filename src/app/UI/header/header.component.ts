@@ -1,18 +1,38 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {GetTitleUrlService} from "../../services/getTitleUrl.service";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnChanges {
+export class HeaderComponent implements OnInit{
 
-  @Input() linkTitle: string[] = []
   cartPageOpen = false;
+  inputSearch: boolean = false;
+  @Output() inputText: string = '';
+  linkTitle?: string[]
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.linkTitle) {
-      this.linkTitle = changes.linkTitle.currentValue;
+  constructor(
+    private getTitleUrlService: GetTitleUrlService,
+  ) {
+
+  }
+
+  ngOnInit(): void {
+    this.getTitleUrlService.headerLink$.subscribe((linkTitle) => {
+      this.linkTitle = linkTitle;
+      this.handleLinkTitleChange();
+    });
+  }
+
+  handleLinkTitleChange() {
+    if (this.linkTitle && this.linkTitle.length > 0) {
+      if (['phones', 'tablets', 'accessories', 'favorites'].includes(this.linkTitle[0])) {
+        this.inputSearch = true;
+      } else {
+        this.inputSearch = false;
+      }
     }
   }
 

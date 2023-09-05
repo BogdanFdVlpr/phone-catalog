@@ -2,14 +2,21 @@
   <div class="header-nav">
     <img routerLink="/" src="../../../assets/img/icons/Logo.svg" alt="Logo" class="logo" (click)="clearCartPageOpen()">
     <div class="header-nav__content" [class.display--none]="cartPageOpen">
-      <a routerLinkActive="active-nav" routerLink="/" [routerLinkActiveOptions]="{exact: true}">HOME</a>
+      <a routerLinkActive="active-nav" routerLink="/" [routerLinkActiveOptions]="{exact: true}" (click)="clearCartPageOpen()">HOME</a>
       <a routerLinkActive="active-nav" routerLink="phones">PHONES</a>
       <a routerLinkActive="active-nav" routerLink="tablets">TABLETS</a>
       <a routerLinkActive="active-nav" routerLink="accessories">ACCESSORIES</a>
     </div>
   </div>
   <div class="header-icons">
-    <input class="header-search" type="text" placeholder="Search in {{linkTitle}}..." [class.display--none]="cartPageOpen">
+    <input
+      class="header-search"
+      type="text"
+      placeholder="Search in {{linkTitle}}..."
+      [class.display--none]="cartPageOpen || !inputSearch"
+      [(ngModel)]="inputText"
+    >
+
     <a routerLink="favorites" [class.display--none]="cartPageOpen">
       <img routerLinkActive="active-nav" class="header-icon" src="../../../assets/img/icons/heart-icon.svg" alt="heart icon" >
     </a>

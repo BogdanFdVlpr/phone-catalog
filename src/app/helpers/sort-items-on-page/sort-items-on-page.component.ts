@@ -29,4 +29,8 @@ export class SortItemsOnPageComponent implements OnInit{
       return this.array
     }
   }
+
+  displayQuantityGoods(event: any) {
+    console.log(event.target.pageSizeOptions)
+  }
 }

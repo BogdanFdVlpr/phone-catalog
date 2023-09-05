@@ -38,13 +38,14 @@
     margin: -1px auto;
     border: 1px solid var(--gray);
     border-top: none;
+    background: url("/assets/img/icons/search-icon.svg") 290px no-repeat;
   }
 }
 
 .header-nav__content a.active-nav,
 .header-icons .header-icon.active-nav
 {
-  margin-bottom: -2px;
+  margin-bottom: -1.5px;
   border-bottom: 3px solid var(--grayPrimary);
   color: var(--grayPrimary);
 }

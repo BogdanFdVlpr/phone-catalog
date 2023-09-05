@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit {
   @Input() sortProduct?: string;
   @Input() buttonScroll?: boolean;
   @Input() flexWrap?: boolean;
+  @Input() findGoods?: string;
   @Input() marginTopClass = '';
   @Output() isLoadingChange = new EventEmitter<boolean>();
   @Output() array = new EventEmitter<IProducts[]>();
