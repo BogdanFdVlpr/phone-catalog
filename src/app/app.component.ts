@@ -10,7 +10,6 @@ import {GetTitleUrlService} from "./services/getTitleUrl.service";
 export class AppComponent implements OnInit{
   title = 'phone-catalog';
   headerLink: string[] = [];
-
   constructor(
     private router: Router,
     private getTitleUrlService: GetTitleUrlService,
@@ -22,6 +21,9 @@ export class AppComponent implements OnInit{
         this.headerLink = window.location.href.split('/').splice(3, 4);
         this.getTitleUrlService.updateHeaderLink(this.headerLink)
       }
+    });
+    document.addEventListener('touchstart', function(e) {
+      e.preventDefault();
     });
   }
 }

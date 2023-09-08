@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {GetTitleUrlService} from "../../services/getTitleUrl.service";
 
 @Component({
@@ -10,14 +10,20 @@ export class HeaderComponent implements OnInit{
 
   cartPageOpen = false;
   inputSearch: boolean = false;
-  @Output() inputText: string = '';
   linkTitle?: string[]
-
+  @Output() inputTextChange = new EventEmitter<string>();
   constructor(
     private getTitleUrlService: GetTitleUrlService,
-  ) {
+  ) {}
 
+  set inputText(value: string) {
+    this._inputText = value;
+    this.inputTextChange.emit(value);
   }
+  get inputText(): string {
+    return this._inputText;
+  }
+  private _inputText: string = '';
 
   ngOnInit(): void {
     this.getTitleUrlService.headerLink$.subscribe((linkTitle) => {

@@ -3,6 +3,7 @@ import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
 import  {delay} from "rxjs";
 import * as events from "events";
+import {FilterProductsPipe} from "../../pipes/filter-products.pipe";
 
 @Component({
   selector: 'app-products',
@@ -21,13 +22,12 @@ export class ProductsComponent implements OnInit {
   @Output() isLoadingChange = new EventEmitter<boolean>();
   @Output() array = new EventEmitter<IProducts[]>();
 
-
   products: IProducts[] = [];
-
 
   constructor(
     public getProductService: GetProductService,
     private elementRef: ElementRef,
+    // private filterProductsPipe: FilterProductsPipe,
   ) {}
 
   ngOnInit(): void {

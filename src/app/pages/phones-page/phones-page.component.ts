@@ -10,10 +10,10 @@ import {GetTitleUrlService} from "../../services/getTitleUrl.service";
   styleUrls: ['./phones-page.component.scss']
 })
 export class PhonesPageComponent implements OnInit, OnChanges {
-  @Input() inputText?: string;
   isLoading: boolean = true;
   products?: IProducts[];
   quantityPhones: number = 0;
+  @Input() headerInputText?: string;
 
   constructor(
     public getProductService: GetProductService,
@@ -22,7 +22,6 @@ export class PhonesPageComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('phonesPage - inputText:', this.inputText)
     }
 
   ngOnInit(): void {
