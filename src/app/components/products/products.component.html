@@ -11,7 +11,7 @@
     <div
       class="card"
       [class.cards--flex-wrap]="flexWrap"
-      *ngFor="let product of products"
+      *ngFor="let product of products | filterProducts: textFilter"
     >
       <img [src]="'assets/' + product.image" alt="{{ product.name }}">
       <h2>{{ product.name }}</h2>
@@ -21,6 +21,7 @@
         <div class="old-price"  [hidden]="!oldPrice">${{ product.fullPrice | number:'1.0-0' }}</div>
 
       </div>
+
 
       <div class="card-info">
         <div class="card-info-container">

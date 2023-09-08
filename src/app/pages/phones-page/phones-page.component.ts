@@ -13,7 +13,6 @@ export class PhonesPageComponent implements OnInit {
   isLoading: boolean = true;
   products?: IProducts[];
   quantityPhones: number = 0;
-  @Input() inputText!: string;
 
   constructor(
     public getProductService: GetProductService,
@@ -26,6 +25,7 @@ export class PhonesPageComponent implements OnInit {
       this.quantityPhones = this.quantityGoodsService.calculateQuantity(products, 'phones')
     })
   }
+
 
 
 }

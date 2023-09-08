@@ -2,6 +2,7 @@ import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, S
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
 import {delay} from "rxjs";
+import {DataStateService} from "../../services/data-state-service";
 
 @Component({
   selector: 'app-products',
@@ -20,13 +21,13 @@ export class ProductsComponent implements OnInit, OnChanges {
   @Output() isLoadingChange = new EventEmitter<boolean>();
   @Output() array = new EventEmitter<IProducts[]>();
 
-  @Input() textFilter!: string;
+  textFilter!: string;
   products: IProducts[] = [];
 
-
   constructor(
-    public getProductService: GetProductService,
+    public dataStateService: DataStateService,
     private elementRef: ElementRef,
+
   ) {
   }
 
@@ -36,11 +37,11 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     if (this.sortProduct) {
-      this.getProductService.getAllProducts().subscribe(products => {
+      this.dataStateService.phones$.subscribe(products => {
         this.products = this.sortProducts(products);
       })
     } else {
-      this.getProductService.getAllProducts().pipe(
+      this.dataStateService.phones$.pipe(
         delay(1000),
       ).subscribe(products => {
         this.products = products.sort((a, b) => b.year - a.year);
@@ -48,6 +49,7 @@ export class ProductsComponent implements OnInit, OnChanges {
         this.isLoadingChange.emit(false);
       });
     }
+    this.dataStateService.searchValue$.subscribe(newTextFilter => this.textFilter = newTextFilter)
   };
 
   sortProducts(products: IProducts[]): IProducts[] {

@@ -24,7 +24,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SortItemsOnPageComponent } from './helpers/sort-items-on-page/sort-items-on-page.component';
 import { SmallNavigationComponent } from './components/small-navigation/small-navigation.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { FilterProducts } from "./pipes/filter-products";
+import { FilterProductsPipe } from "./pipes/filter-products.pipe";
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { FilterProducts } from "./pipes/filter-products";
     LoadingComponent,
     SortItemsOnPageComponent,
     SmallNavigationComponent,
-    FilterProducts,
+    FilterProductsPipe,
   ],
   imports: [
     BrowserModule,

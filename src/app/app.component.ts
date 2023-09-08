@@ -10,7 +10,6 @@ import {GetTitleUrlService} from "./services/getTitleUrl.service";
 export class AppComponent implements OnInit{
   title = 'phone-catalog';
   headerLink: string[] = [];
-  @Input() inputText!: string;
 
   constructor(
     private router: Router,
