@@ -25,6 +25,7 @@ import { SortItemsOnPageComponent } from './helpers/sort-items-on-page/sort-item
 import { SmallNavigationComponent } from './components/small-navigation/small-navigation.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { FilterProductsPipe } from "./pipes/filter-products.pipe";
+import { NoFoundContentComponent } from './components/no-found-content/no-found-content.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FilterProductsPipe } from "./pipes/filter-products.pipe";
     SortItemsOnPageComponent,
     SmallNavigationComponent,
     FilterProductsPipe,
+    NoFoundContentComponent,
   ],
   imports: [
     BrowserModule,

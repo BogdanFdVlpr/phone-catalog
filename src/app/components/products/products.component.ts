@@ -1,8 +1,8 @@
 import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
 import {delay} from "rxjs";
 import {DataStateService} from "../../services/data-state-service";
+import {HandlingInputValueService} from "../../services/handling-input-value.service";
 
 @Component({
   selector: 'app-products',
@@ -26,6 +26,7 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   constructor(
     public dataStateService: DataStateService,
+    public handlingInputValueService: HandlingInputValueService,
     private elementRef: ElementRef,
 
   ) {
@@ -49,7 +50,7 @@ export class ProductsComponent implements OnInit, OnChanges {
         this.isLoadingChange.emit(false);
       });
     }
-    this.dataStateService.searchValue$.subscribe(newTextFilter => this.textFilter = newTextFilter)
+    this.handlingInputValueService.searchValue$.subscribe(newTextFilter => this.textFilter = newTextFilter)
   };
 
   sortProducts(products: IProducts[]): IProducts[] {

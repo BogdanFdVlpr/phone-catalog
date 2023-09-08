@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GetTitleUrlService} from "../../services/getTitleUrl.service";
-import {DataStateService} from "../../services/data-state-service";
+import {HandlingInputValueService} from "../../services/handling-input-value.service";
 
 @Component({
   selector: 'app-header',
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private getTitleUrlService: GetTitleUrlService,
-    private dataStateService: DataStateService,
+    private handlingInputValueService: HandlingInputValueService,
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   }
 
   changeInputText() {
-    this.dataStateService.onSearchValueChange(this.inputText)
+    this.handlingInputValueService.onSearchValueChange(this.inputText)
   }
 
 
