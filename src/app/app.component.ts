@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {GetTitleUrlService} from "./services/getTitleUrl.service";
 
@@ -10,6 +10,8 @@ import {GetTitleUrlService} from "./services/getTitleUrl.service";
 export class AppComponent implements OnInit{
   title = 'phone-catalog';
   headerLink: string[] = [];
+  @Input() inputText!: string;
+
   constructor(
     private router: Router,
     private getTitleUrlService: GetTitleUrlService,

@@ -1,9 +1,7 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
-import  {delay} from "rxjs";
-import * as events from "events";
-import {FilterProductsPipe} from "../../pipes/filter-products.pipe";
+import {delay} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -11,7 +9,7 @@ import {FilterProductsPipe} from "../../pipes/filter-products.pipe";
   styleUrls: ['./products.component.scss']
 })
 
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnChanges {
   @Input() title!: string;
   @Input() oldPrice?: boolean;
   @Input() sortProduct?: string;
@@ -22,13 +20,19 @@ export class ProductsComponent implements OnInit {
   @Output() isLoadingChange = new EventEmitter<boolean>();
   @Output() array = new EventEmitter<IProducts[]>();
 
+  @Input() textFilter!: string;
   products: IProducts[] = [];
+
 
   constructor(
     public getProductService: GetProductService,
     private elementRef: ElementRef,
-    // private filterProductsPipe: FilterProductsPipe,
-  ) {}
+  ) {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.textFilter)
+    }
 
   ngOnInit(): void {
     if (this.sortProduct) {
@@ -59,6 +63,7 @@ export class ProductsComponent implements OnInit {
     const cardsElement = this.elementRef.nativeElement.querySelector('.cards');
     cardsElement.scrollLeft += 289;
   }
+
   scrollCardsLeft() {
     const cardsElement = this.elementRef.nativeElement.querySelector('.cards');
     cardsElement.scrollLeft -= 289;

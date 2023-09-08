@@ -9,20 +9,17 @@ import {GetTitleUrlService} from "../../services/getTitleUrl.service";
   templateUrl: './phones-page.component.html',
   styleUrls: ['./phones-page.component.scss']
 })
-export class PhonesPageComponent implements OnInit, OnChanges {
+export class PhonesPageComponent implements OnInit {
   isLoading: boolean = true;
   products?: IProducts[];
   quantityPhones: number = 0;
-  @Input() headerInputText?: string;
+  @Input() inputText!: string;
 
   constructor(
     public getProductService: GetProductService,
     public quantityGoodsService: QuantityGoodsService,
   ) {
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    }
 
   ngOnInit(): void {
     this.getProductService.getAllProducts().subscribe( (products) => {
