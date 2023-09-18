@@ -2,22 +2,27 @@
 
 <app-small-navigation></app-small-navigation>
 
-<div class="phones">
-  <h1>Mobile phones</h1>
-  <p class="phones-quantity">{{ this.quantityPhones }} models</p>
+<app-no-found-content *ngIf="(productSearchService.foundProducts$ | async) === true" class="noFoundContent"></app-no-found-content>
 
-<app-sort-items-on-page
-  [array]="products"
->
-</app-sort-items-on-page>
+<div *ngIf="(productSearchService.foundProducts$ | async) === false">
+  <div class="phones">
+    <h1>Mobile phones</h1>
+    <p class="phones-quantity">{{ this.quantityPhones }} models</p>
 
-  <app-products
-    [flexWrap]="true"
-    [oldPrice]="true"
-    (isLoadingChange)="isLoading = $event"
-    [marginTopClass]="'margin-top-small'"
-    (array)="products = $event"
-  ></app-products>
+    <app-sort-items-on-page
+      [array]="products"
+    >
+    </app-sort-items-on-page>
+
+    <app-products
+      [flexWrap]="true"
+      [oldPrice]="true"
+      (isLoadingChange)="isLoading = $event"
+      [marginTopClass]="'margin-top-small'"
+      (array)="products = $event"
+    ></app-products>
+  </div>
 </div>
+
 
 

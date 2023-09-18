@@ -3,6 +3,7 @@ import {QuantityGoodsService} from "../../services/quantityGoods.service";
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
 import {GetTitleUrlService} from "../../services/getTitleUrl.service";
+import {ProductSearchService} from "../../services/product-search.service";
 
 @Component({
   selector: 'app-phones-page',
@@ -17,6 +18,7 @@ export class PhonesPageComponent implements OnInit {
   constructor(
     public getProductService: GetProductService,
     public quantityGoodsService: QuantityGoodsService,
+    public productSearchService: ProductSearchService,
   ) {
   }
 

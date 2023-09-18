@@ -1,8 +1,9 @@
-import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {IProducts} from "../../models/product";
 import {delay} from "rxjs";
 import {DataStateService} from "../../services/data-state-service";
 import {HandlingInputValueService} from "../../services/handling-input-value.service";
+import {ProductSearchService} from "../../services/product-search.service";
 
 @Component({
   selector: 'app-products',
@@ -10,7 +11,7 @@ import {HandlingInputValueService} from "../../services/handling-input-value.ser
   styleUrls: ['./products.component.scss']
 })
 
-export class ProductsComponent implements OnInit, OnChanges {
+export class ProductsComponent implements OnInit {
   @Input() title!: string;
   @Input() oldPrice?: boolean;
   @Input() sortProduct?: string;
@@ -28,13 +29,10 @@ export class ProductsComponent implements OnInit, OnChanges {
     public dataStateService: DataStateService,
     public handlingInputValueService: HandlingInputValueService,
     private elementRef: ElementRef,
+    private productSearchService: ProductSearchService,
 
   ) {
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.textFilter)
-    }
 
   ngOnInit(): void {
     if (this.sortProduct) {
@@ -50,8 +48,23 @@ export class ProductsComponent implements OnInit, OnChanges {
         this.isLoadingChange.emit(false);
       });
     }
-    this.handlingInputValueService.searchValue$.subscribe(newTextFilter => this.textFilter = newTextFilter)
+    this.handlingInputValueService.searchValue$.subscribe(newTextFilter => {
+      this.textFilter = newTextFilter
+      this.checkFoundProducts();
+    })
   };
+
+  checkFoundProducts() {
+    let filteredProducts = this.products.filter(product => {
+        return  product.name.toLowerCase().includes(this.textFilter.toLowerCase())
+      }
+    );
+    if (this.textFilter.length > 0 && filteredProducts.length === 0) {
+      this.productSearchService.setFoundProducts(true);
+    } else {
+      this.productSearchService.setFoundProducts(false);
+    }
+  }
 
   sortProducts(products: IProducts[]): IProducts[] {
     if (this.sortProduct === 'hotPrice') {
