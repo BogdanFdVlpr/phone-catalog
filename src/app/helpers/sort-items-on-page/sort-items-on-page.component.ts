@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {IProducts} from "../../models/product";
+import {GetSortingValueService} from "../../services/get-sorting-value.service";
 
 @Component({
   selector: 'app-sort-items-on-page',
@@ -8,29 +9,35 @@ import {IProducts} from "../../models/product";
 })
 export class SortItemsOnPageComponent implements OnInit{
   @Input() array?: IProducts[];
-  @Output() sortedArray?: IProducts[];
+  // @Output() sortedArray?: IProducts[];
 
-  sortingValue = ''
-
-  constructor() {
+  selectedValues: string = '';
+  constructor(
+    private getSortingValueService: GetSortingValueService,
+  ) {
   }
-  ngOnInit(): void {
-  }
-
-  sortArray(event: any) {
-    this.sortingValue = event.target.value;
-    if (this.sortingValue === 'age') {
-      return this.sortedArray = this.array?.sort((a, b) => b.year - a.year)
-    } else if (this.sortingValue === 'name') {
-      return this.sortedArray = this.array?.sort((a, b) => (a.name.localeCompare(b.name)))
-    }  else if (this.sortingValue === 'price') {
-      return this.sortedArray = this.array?.sort((a, b) => a.price - b.price)
-    } else {
-      return this.array
-    }
+  ngOnInit() {
+    this.getSortingValueService.selectedValue$.subscribe((newValue) => {
+      this.selectedValues = newValue;
+    });
   }
 
-  displayQuantityGoods(event: any) {
-    console.log(event.target.pageSizeOptions)
+  onSelectionChange(event: Event): void {
+    const newValue = (event.target as HTMLSelectElement).value;
+    this.getSortingValueService.updateSelectedValue(newValue);
   }
+
+  //
+  //
+  // getPaginationList(pageEvent: any) {
+  //   let postPerPage = +pageEvent.pageSize;
+  //   let pageNumber = +pageEvent.pageIndex + 1;
+  //
+  //   const startIndex = postPerPage * pageNumber - postPerPage;
+  //   const endIndex = Math.min(startIndex + postPerPage, this.array!.length);
+  //
+  //   return this.array!.slice(startIndex, endIndex);
+  // }
+  //
+  // protected readonly event = event;
 }

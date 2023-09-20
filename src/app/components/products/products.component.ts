@@ -1,9 +1,10 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {IProducts} from "../../models/product";
 import {delay} from "rxjs";
 import {DataStateService} from "../../services/data-state-service";
 import {HandlingInputValueService} from "../../services/handling-input-value.service";
 import {ProductSearchService} from "../../services/product-search.service";
+import {GetSortingValueService} from "../../services/get-sorting-value.service";
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,7 @@ import {ProductSearchService} from "../../services/product-search.service";
   styleUrls: ['./products.component.scss']
 })
 
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnChanges {
   @Input() title!: string;
   @Input() oldPrice?: boolean;
   @Input() sortProduct?: string;
@@ -30,29 +31,48 @@ export class ProductsComponent implements OnInit {
     public handlingInputValueService: HandlingInputValueService,
     private elementRef: ElementRef,
     private productSearchService: ProductSearchService,
-
+    private getSortingValueService: GetSortingValueService,
   ) {
   }
 
   ngOnInit(): void {
-    if (this.sortProduct) {
-      this.dataStateService.phones$.subscribe(products => {
-        this.products = this.sortProducts(products);
-      })
-    } else {
-      this.dataStateService.phones$.pipe(
-        delay(1000),
-      ).subscribe(products => {
-        this.products = products.sort((a, b) => b.year - a.year);
-        this.array.emit(this.products)
-        this.isLoadingChange.emit(false);
-      });
-    }
-    this.handlingInputValueService.searchValue$.subscribe(newTextFilter => {
-      this.textFilter = newTextFilter
-      this.checkFoundProducts();
-    })
+    this.loadData();
+
+    this.getSortingValueService.selectedValue$.subscribe(newSelectedValue => {
+      this.loadData();
+    });
   };
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.sortProduct && !changes.sortProduct.firstChange ) {
+      // Sort products when sortProduct changes
+      this.loadData();
+    }
+  }
+
+  private loadData() {
+    this.getSortingValueService.selectedValue$.subscribe(newSelectedValue => {
+      if (this.sortProduct) {
+        this.dataStateService.phones$.subscribe(products => {
+          this.products = this.sortProducts(products);
+        });
+      } else {
+        this.dataStateService.phones$.pipe(
+          delay(1000),
+        ).subscribe(products => {
+          if (newSelectedValue === 'name') {
+            this.products = products.sort((a, b) => a.name.localeCompare(b.name));
+          } else if (newSelectedValue === 'price') {
+            this.products = products.sort((a, b) => a.price - b.price);
+          } else {
+            this.products = products.sort((a, b) => b.year - a.year);
+          }
+          this.isLoadingChange.emit(false);
+        });
+      }
+    });
+  }
+
 
   checkFoundProducts() {
     let filteredProducts = this.products.filter(product => {
