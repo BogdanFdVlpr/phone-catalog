@@ -1,6 +1,5 @@
 import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {IProducts} from "../../models/product";
-import {delay} from "rxjs";
 import {DataStateService} from "../../services/data-state-service";
 import {HandlingInputValueService} from "../../services/handling-input-value.service";
 import {ProductSearchService} from "../../services/product-search.service";
@@ -42,6 +41,11 @@ export class ProductsComponent implements OnInit, OnChanges {
       this.loadData();
     });
 
+    this.handlingInputValueService.searchValue$.subscribe(newTextFilter => {
+      this.textFilter = newTextFilter
+      this.checkFoundProducts();
+    })
+
     setTimeout(() => {
       this.isLoadingChange.emit(false);
     }, 1000)
@@ -49,7 +53,6 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.sortProduct && !changes.sortProduct.firstChange ) {
-      // Sort products when sortProduct changes
       this.loadData();
     }
   }

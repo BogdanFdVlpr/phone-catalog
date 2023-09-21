@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit,} from '@angular/core';
 import {IProducts} from "../../models/product";
 import {GetSortingValueService} from "../../services/get-sorting-value.service";
 import {DataStateService} from "../../services/data-state-service";
@@ -18,9 +18,7 @@ export class SortItemsOnPageComponent implements OnInit{
   ) {
   }
   ngOnInit() {
-    this.getSortingValueService.selectedValue$.subscribe((newValue) => {
-      this.selectedValues = newValue;
-    });
+    this.getSortingValueService.selectedValue$.subscribe(newValue => this.selectedValues = newValue);
     this.dataStateService.phones$.subscribe(phones => this.allPhones = phones)
   }
 
@@ -29,14 +27,12 @@ export class SortItemsOnPageComponent implements OnInit{
     this.getSortingValueService.updateSelectedValue(newValue);
   }
 
-  //
-  //
   // getPaginationList(pageEvent: any) {
   //   let postPerPage = +pageEvent.pageSize;
   //   let pageNumber = +pageEvent.pageIndex + 1;
   //
   //   const startIndex = postPerPage * pageNumber - postPerPage;
-  //   const endIndex = Math.min(startIndex + postPerPage, this.array!.length);
+  //   const endIndex = Math.min(startIndex + postPerPage, this.allPhones!.length);
   //
   //   return this.array!.slice(startIndex, endIndex);
   // }
