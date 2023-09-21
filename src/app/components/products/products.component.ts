@@ -4,6 +4,7 @@ import {DataStateService} from "../../services/data-state-service";
 import {HandlingInputValueService} from "../../services/handling-input-value.service";
 import {ProductSearchService} from "../../services/product-search.service";
 import {GetSortingValueService} from "../../services/get-sorting-value.service";
+import {ChooseItemsOnPageService} from "../../services/chooseItemsOnPage.service";
 
 @Component({
   selector: 'app-products',
@@ -24,6 +25,7 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   textFilter!: string;
   products: IProducts[] = [];
+  currentPage: number = 1;
 
   constructor(
     public dataStateService: DataStateService,
@@ -31,6 +33,7 @@ export class ProductsComponent implements OnInit, OnChanges {
     private elementRef: ElementRef,
     private productSearchService: ProductSearchService,
     private getSortingValueService: GetSortingValueService,
+    public chooseItemsOnPageService: ChooseItemsOnPageService,
   ) {
   }
 
@@ -72,9 +75,14 @@ export class ProductsComponent implements OnInit, OnChanges {
           } else {
             this.products = products.sort((a, b) => b.year - a.year);
           }
+          this.currentPage = 1;
         });
       }
     });
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
   }
 
 

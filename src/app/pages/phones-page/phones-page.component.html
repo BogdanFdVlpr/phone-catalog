@@ -15,6 +15,7 @@
       [flexWrap]="true"
       [oldPrice]="true"
       (isLoadingChange)="isLoading = $event"
+      (change)="onPageChange($event)"
       [marginTopClass]="'margin-top-small'"
     ></app-products>
   </div>

@@ -2,6 +2,7 @@ import {Component, OnInit,} from '@angular/core';
 import {IProducts} from "../../models/product";
 import {GetSortingValueService} from "../../services/get-sorting-value.service";
 import {DataStateService} from "../../services/data-state-service";
+import {ChooseItemsOnPageService} from "../../services/chooseItemsOnPage.service";
 
 @Component({
   selector: 'app-sort-items-on-page',
@@ -12,14 +13,17 @@ export class SortItemsOnPageComponent implements OnInit{
 
   selectedValues: string = '';
   allPhones: IProducts[] = [];
+  currentItemsOnPage: number = 16;
   constructor(
     private getSortingValueService: GetSortingValueService,
     public dataStateService: DataStateService,
+    public chooseItemsOnPageService: ChooseItemsOnPageService,
   ) {
   }
   ngOnInit() {
-    this.getSortingValueService.selectedValue$.subscribe(newValue => this.selectedValues = newValue);
     this.dataStateService.phones$.subscribe(phones => this.allPhones = phones)
+    this.getSortingValueService.selectedValue$.subscribe(newValue => this.selectedValues = newValue);
+    this.chooseItemsOnPageService.currentPage$.subscribe(newValue => this.currentItemsOnPage = newValue);
   }
 
   onSelectionChange(event: Event): void {
@@ -27,13 +31,8 @@ export class SortItemsOnPageComponent implements OnInit{
     this.getSortingValueService.updateSelectedValue(newValue);
   }
 
-  // getPaginationList(pageEvent: any) {
-  //   let postPerPage = +pageEvent.pageSize;
-  //   let pageNumber = +pageEvent.pageIndex + 1;
-  //
-  //   const startIndex = postPerPage * pageNumber - postPerPage;
-  //   const endIndex = Math.min(startIndex + postPerPage, this.allPhones!.length);
-  //
-  //   return this.array!.slice(startIndex, endIndex);
-  // }
+  onCurrentItemsChange(event: Event): void {
+    const newValue = (event.target as HTMLSelectElement).value;
+    this.chooseItemsOnPageService.setCurrentPage(+newValue);
+  }
 }

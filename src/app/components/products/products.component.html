@@ -11,7 +11,7 @@
     <div
       class="card"
       [class.cards--flex-wrap]="flexWrap"
-      *ngFor="let product of products | filterProducts: textFilter"
+      *ngFor="let product of products | filterProducts: textFilter | paginate: { itemsPerPage: (chooseItemsOnPageService.currentPage$ | async)!, currentPage: currentPage, totalItems: products.length }"
     >
       <img [src]="'assets/' + product.image" alt="{{ product.name }}">
       <h2>{{ product.name }}</h2>
@@ -44,5 +44,8 @@
       </div>
     </div>
 
+  </div>
+  <div class="pagination-controls">
+    <pagination-controls (pageChange)="onPageChange($event)" class="pagination"></pagination-controls>
   </div>
 </div>

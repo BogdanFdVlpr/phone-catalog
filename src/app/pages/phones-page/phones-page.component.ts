@@ -1,9 +1,9 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit,} from '@angular/core';
 import {QuantityGoodsService} from "../../services/quantityGoods.service";
 import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
-import {GetTitleUrlService} from "../../services/getTitleUrl.service";
 import {ProductSearchService} from "../../services/product-search.service";
+import {ChooseItemsOnPageService} from "../../services/chooseItemsOnPage.service";
 
 @Component({
   selector: 'app-phones-page',
@@ -19,6 +19,7 @@ export class PhonesPageComponent implements OnInit {
     public getProductService: GetProductService,
     public quantityGoodsService: QuantityGoodsService,
     public productSearchService: ProductSearchService,
+    private paginationService: ChooseItemsOnPageService,
   ) {
   }
 
@@ -28,6 +29,9 @@ export class PhonesPageComponent implements OnInit {
     })
   }
 
-
+  onPageChange(event: any) {
+    const page = event.pageIndex + 1;
+    this.paginationService.setCurrentPage(page);
+  }
 
 }
