@@ -41,6 +41,10 @@ export class ProductsComponent implements OnInit, OnChanges {
     this.getSortingValueService.selectedValue$.subscribe(newSelectedValue => {
       this.loadData();
     });
+
+    setTimeout(() => {
+      this.isLoadingChange.emit(false);
+    }, 1000)
   };
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -57,9 +61,7 @@ export class ProductsComponent implements OnInit, OnChanges {
           this.products = this.sortProducts(products);
         });
       } else {
-        this.dataStateService.phones$.pipe(
-          delay(1000),
-        ).subscribe(products => {
+        this.dataStateService.phones$.subscribe(products => {
           if (newSelectedValue === 'name') {
             this.products = products.sort((a, b) => a.name.localeCompare(b.name));
           } else if (newSelectedValue === 'price') {
@@ -67,7 +69,6 @@ export class ProductsComponent implements OnInit, OnChanges {
           } else {
             this.products = products.sort((a, b) => b.year - a.year);
           }
-          this.isLoadingChange.emit(false);
         });
       }
     });

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {IProducts} from "../../models/product";
 import {GetSortingValueService} from "../../services/get-sorting-value.service";
+import {DataStateService} from "../../services/data-state-service";
 
 @Component({
   selector: 'app-sort-items-on-page',
@@ -8,18 +9,19 @@ import {GetSortingValueService} from "../../services/get-sorting-value.service";
   styleUrls: ['./sort-items-on-page.component.scss']
 })
 export class SortItemsOnPageComponent implements OnInit{
-  @Input() array?: IProducts[];
-  // @Output() sortedArray?: IProducts[];
 
   selectedValues: string = '';
+  allPhones: IProducts[] = [];
   constructor(
     private getSortingValueService: GetSortingValueService,
+    public dataStateService: DataStateService,
   ) {
   }
   ngOnInit() {
     this.getSortingValueService.selectedValue$.subscribe((newValue) => {
       this.selectedValues = newValue;
     });
+    this.dataStateService.phones$.subscribe(phones => this.allPhones = phones)
   }
 
   onSelectionChange(event: Event): void {
@@ -38,6 +40,4 @@ export class SortItemsOnPageComponent implements OnInit{
   //
   //   return this.array!.slice(startIndex, endIndex);
   // }
-  //
-  // protected readonly event = event;
 }

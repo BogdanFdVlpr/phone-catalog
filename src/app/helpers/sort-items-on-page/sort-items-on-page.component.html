@@ -14,11 +14,11 @@
     </select>
   </div>
 
-  <div class="sorting-container" *ngIf="array" >
+  <div class="sorting-container" *ngIf="allPhones" >
     <p class="sorting-name">Items on page</p>
-    <mat-paginator [length]="array.length"
-                   [pageSize]="array.length"
-                   [pageSizeOptions]="[array.length, 16, 8, 4]"
+    <mat-paginator [length]="allPhones.length"
+                   [pageSize]="allPhones.length"
+                   [pageSizeOptions]="[allPhones.length, 16, 8, 4]"
                    aria-label="Select page"
     >
     </mat-paginator>
