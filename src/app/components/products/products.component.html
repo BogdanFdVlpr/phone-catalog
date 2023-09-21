@@ -46,6 +46,10 @@
 
   </div>
   <div class="pagination-controls">
-    <pagination-controls (pageChange)="onPageChange($event)" class="pagination"></pagination-controls>
+    <pagination-controls
+      (pageChange)="onPageChange($event)"
+      class="pagination"
+      #paginationControls
+    ></pagination-controls>
   </div>
 </div>

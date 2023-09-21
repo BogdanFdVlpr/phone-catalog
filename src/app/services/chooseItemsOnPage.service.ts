@@ -8,7 +8,7 @@ export class ChooseItemsOnPageService {
 
   constructor() { }
 
-  private currentPageSubject = new BehaviorSubject<number>(16);
+  private currentPageSubject = new BehaviorSubject<number>(4);
   currentPage$ = this.currentPageSubject.asObservable();
 
   setCurrentPage(page: number) {

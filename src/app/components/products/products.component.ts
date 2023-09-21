@@ -1,4 +1,14 @@
-import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {IProducts} from "../../models/product";
 import {DataStateService} from "../../services/data-state-service";
 import {HandlingInputValueService} from "../../services/handling-input-value.service";
@@ -22,6 +32,7 @@ export class ProductsComponent implements OnInit, OnChanges {
   @Input() marginTopClass = '';
   @Output() isLoadingChange = new EventEmitter<boolean>();
   @Output() array = new EventEmitter<IProducts[]>();
+  @ViewChild('paginationControls') paginationControls!: ElementRef;
 
   textFilter!: string;
   products: IProducts[] = [];
@@ -83,6 +94,14 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   onPageChange(page: number) {
     this.currentPage = page;
+    this.scrollToTop()
+  }
+
+  scrollToTop() {
+    const scrollField = document.querySelector('.phones');
+    if (scrollField) {
+      scrollField.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
 

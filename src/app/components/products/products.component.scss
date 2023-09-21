@@ -170,3 +170,65 @@ button {
   margin-top: 72px;
 }
 
+/* products.component.css */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+:host ::ng-deep .ngx-pagination {
+  display: flex;
+  margin: 0;
+}
+
+:host ::ng-deep .ngx-pagination .current {
+  color: #ffffff;
+  background-color: var(--grayPrimary);
+  border: none;
+}
+
+:host ::ng-deep .ngx-pagination li {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  text-align: center;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  padding: 5px 0;
+  border: 1px solid var(--gray);
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+:host ::ng-deep .ngx-pagination li:hover {
+  border-color: var(--grayPrimary);
+}
+
+:host ::ng-deep .pagination .ngx-pagination .pagination-previous {
+  font-size: 0;
+  background-image: url("/assets/img/icons/arrow-prev-icon.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 16px;
+}
+:host ::ng-deep .pagination .ngx-pagination .pagination-next {
+  font-size: 0;
+  background-image: url("/assets/img/icons/arrow-next-icon.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 8px;
+}
+
+:host ::ng-deep .ngx-pagination a, .ngx-pagination button {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+:host ::ng-deep .ngx-pagination a:hover {
+  background-color: inherit;
+}
