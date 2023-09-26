@@ -15,6 +15,7 @@ import {HandlingInputValueService} from "../../services/handling-input-value.ser
 import {ProductSearchService} from "../../services/product-search.service";
 import {GetSortingValueService} from "../../services/get-sorting-value.service";
 import {ChooseItemsOnPageService} from "../../services/chooseItemsOnPage.service";
+import {FavouriteBadgeService} from "../../services/favourite-badge.service";
 
 @Component({
   selector: 'app-products',
@@ -45,6 +46,7 @@ export class ProductsComponent implements OnInit, OnChanges {
     private productSearchService: ProductSearchService,
     private getSortingValueService: GetSortingValueService,
     public chooseItemsOnPageService: ChooseItemsOnPageService,
+    public favouriteBadgeService: FavouriteBadgeService,
   ) {
   }
 
@@ -66,7 +68,7 @@ export class ProductsComponent implements OnInit, OnChanges {
   };
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.sortProduct && !changes.sortProduct.firstChange ) {
+    if (changes.sortProduct && !changes.sortProduct.firstChange) {
       this.loadData();
     }
   }
@@ -100,14 +102,13 @@ export class ProductsComponent implements OnInit, OnChanges {
   scrollToTop() {
     const scrollField = document.querySelector('.phones');
     if (scrollField) {
-      scrollField.scrollIntoView({ behavior: 'smooth' });
+      scrollField.scrollIntoView({behavior: 'smooth'});
     }
   }
 
-
   checkFoundProducts() {
     let filteredProducts = this.products.filter(product => {
-        return  product.name.toLowerCase().includes(this.textFilter.toLowerCase())
+        return product.name.toLowerCase().includes(this.textFilter.toLowerCase())
       }
     );
     if (this.textFilter.length > 0 && filteredProducts.length === 0) {
@@ -136,13 +137,18 @@ export class ProductsComponent implements OnInit, OnChanges {
     cardsElement.scrollLeft -= 289;
   }
 
+  currentQuantity = this.favouriteBadgeService.favouriteBadgeSubject.value;
+
   addToFavorite(event: MouseEvent) {
     const heartIcon = event.target as HTMLElement;
 
+
     if (heartIcon.classList.contains('heart-icon--active')) {
       heartIcon.classList.remove('heart-icon--active');
+      this.favouriteBadgeService.setFavouriteBadge(this.currentQuantity -= 1);
     } else {
       heartIcon.classList.add('heart-icon--active');
+      this.favouriteBadgeService.setFavouriteBadge(this.currentQuantity += 1);
     }
   }
 }

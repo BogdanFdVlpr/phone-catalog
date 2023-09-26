@@ -27,6 +27,8 @@ import { SmallNavigationComponent } from './components/small-navigation/small-na
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { FilterProductsPipe } from "./pipes/filter-products.pipe";
 import { NoFoundContentComponent } from './components/no-found-content/no-found-content.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { NoFoundContentComponent } from './components/no-found-content/no-found-
     MatProgressSpinnerModule,
     MatPaginatorModule,
     NgxPaginationModule,
+    MatBadgeModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

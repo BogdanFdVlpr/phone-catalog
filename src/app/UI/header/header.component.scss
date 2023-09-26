@@ -1,4 +1,10 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,4 +72,10 @@
 
 .display--none {
   display: none;
+}
+
+.favourite-badge {
+  position: relative;
+  top: -43px;
+  left: -23px;
 }
