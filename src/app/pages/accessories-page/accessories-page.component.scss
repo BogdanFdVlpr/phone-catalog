@@ -1,0 +1,19 @@
+.accessories {
+  max-width: 1056px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 400;
+    text-align: center;
+    color: var(--graySecondary);
+  }
+
+  img {
+    max-width: 800px;
+    margin: auto;
+  }
+}
