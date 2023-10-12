@@ -1,5 +1,5 @@
 export interface IProducts {
-  id?: string
+  id: number
   category: string
   phoneId: string
   itemId: string
@@ -12,4 +12,5 @@ export interface IProducts {
   ram: string
   year: number
   image: string
+  isFavorite: boolean
 }

@@ -9,13 +9,14 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {IProducts} from "../../models/product";
-import {DataStateService} from "../../services/data-state-service";
-import {HandlingInputValueService} from "../../services/handling-input-value.service";
-import {ProductSearchService} from "../../services/product-search.service";
-import {GetSortingValueService} from "../../services/get-sorting-value.service";
-import {ChooseItemsOnPageService} from "../../services/chooseItemsOnPage.service";
-import {FavouriteBadgeService} from "../../services/favourite-badge.service";
+import { IProducts } from "../../models/product";
+import { DataStateService } from "../../services/data-state-service";
+import { HandlingInputValueService } from "../../services/handling-input-value.service";
+import { ProductSearchService } from "../../services/product-search.service";
+import { GetSortingValueService } from "../../services/get-sorting-value.service";
+import { ChooseItemsOnPageService } from "../../services/chooseItemsOnPage.service";
+import { FavouriteBadgeService } from "../../services/favourite-badge.service";
+import {FavoriteGoodsService} from "../../services/favorite-goods.service";
 
 @Component({
   selector: 'app-products',
@@ -40,32 +41,31 @@ export class ProductsComponent implements OnInit, OnChanges {
   currentPage: number = 1;
 
   constructor(
-    public dataStateService: DataStateService,
-    public handlingInputValueService: HandlingInputValueService,
-    private elementRef: ElementRef,
-    private productSearchService: ProductSearchService,
-    private getSortingValueService: GetSortingValueService,
-    public chooseItemsOnPageService: ChooseItemsOnPageService,
-    public favouriteBadgeService: FavouriteBadgeService,
+      public dataStateService: DataStateService,
+      public handlingInputValueService: HandlingInputValueService,
+      private elementRef: ElementRef,
+      private productSearchService: ProductSearchService,
+      private getSortingValueService: GetSortingValueService,
+      public chooseItemsOnPageService: ChooseItemsOnPageService,
+      public favouriteBadgeService: FavouriteBadgeService,
+      public favoriteGoodsService: FavoriteGoodsService,
   ) {
   }
 
   ngOnInit(): void {
     this.loadData();
 
-    this.getSortingValueService.selectedValue$.subscribe(newSelectedValue => {
-      this.loadData();
-    });
-
     this.handlingInputValueService.searchValue$.subscribe(newTextFilter => {
-      this.textFilter = newTextFilter
+      this.textFilter = newTextFilter;
       this.checkFoundProducts();
-    })
+    });
 
     setTimeout(() => {
       this.isLoadingChange.emit(false);
-    }, 1000)
-  };
+    }, 1000);
+
+
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.sortProduct && !changes.sortProduct.firstChange) {
@@ -73,7 +73,7 @@ export class ProductsComponent implements OnInit, OnChanges {
     }
   }
 
-  private loadData() {
+  loadData() {
     this.getSortingValueService.selectedValue$.subscribe(newSelectedValue => {
       if (this.sortProduct) {
         this.dataStateService.phones$.subscribe(products => {
@@ -94,23 +94,24 @@ export class ProductsComponent implements OnInit, OnChanges {
     });
   }
 
+
   onPageChange(page: number) {
     this.currentPage = page;
-    this.scrollToTop()
+    this.scrollToTop();
   }
 
   scrollToTop() {
     const scrollField = document.querySelector('.phones');
     if (scrollField) {
-      scrollField.scrollIntoView({behavior: 'smooth'});
+      scrollField.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
   checkFoundProducts() {
     let filteredProducts = this.products.filter(product => {
-        return product.name.toLowerCase().includes(this.textFilter.toLowerCase())
-      }
-    );
+      return product.name.toLowerCase().includes(this.textFilter.toLowerCase());
+    });
+
     if (this.textFilter.length > 0 && filteredProducts.length === 0) {
       this.productSearchService.setFoundProducts(true);
     } else {
@@ -124,7 +125,7 @@ export class ProductsComponent implements OnInit, OnChanges {
     } else if (this.sortProduct === 'newProduct') {
       return products.slice().sort((a, b) => b.price - a.price);
     }
-    return products
+    return products;
   }
 
   scrollCardsRight() {
@@ -139,16 +140,18 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   currentQuantity = this.favouriteBadgeService.favouriteBadgeSubject.value;
 
-  addToFavorite(event: MouseEvent) {
-    const heartIcon = event.target as HTMLElement;
+  addToFavorite(product: IProducts, event: MouseEvent) {
+      const heartIcon = event.target as HTMLElement;
 
-
-    if (heartIcon.classList.contains('heart-icon--active')) {
-      heartIcon.classList.remove('heart-icon--active');
-      this.favouriteBadgeService.setFavouriteBadge(this.currentQuantity -= 1);
-    } else {
-      heartIcon.classList.add('heart-icon--active');
-      this.favouriteBadgeService.setFavouriteBadge(this.currentQuantity += 1);
+      if (heartIcon.classList.contains('heart-icon--active')) {
+        heartIcon.classList.remove('heart-icon--active');
+        this.favouriteBadgeService.setFavouriteBadge(this.currentQuantity -= 1);
+        this.favoriteGoodsService.removeFromFavorites(product.id);
+      } else {
+        heartIcon.classList.add('heart-icon--active');
+        this.favouriteBadgeService.setFavouriteBadge(this.currentQuantity += 1);
+        this.favoriteGoodsService.addToFavorites(product.id);
+      }
     }
-  }
+
 }
