@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit, OnChanges {
   @Input() title!: string;
   @Input() oldPrice?: boolean;
   @Input() sortProduct?: string;
+  @Input() favoriteProduct?: string;
   @Input() buttonScroll?: boolean;
   @Input() flexWrap?: boolean;
   @Input() findGoods?: string;
@@ -38,6 +39,7 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   textFilter!: string;
   products: IProducts[] = [];
+  favoriteProducts: IProducts[] = [];
   currentPage: number = 1;
 
   constructor(
@@ -54,6 +56,10 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.loadData();
+
+    if (this.favoriteProduct) {
+      this.loadFavoriteProducts();
+    }
 
     this.handlingInputValueService.searchValue$.subscribe(newTextFilter => {
       this.textFilter = newTextFilter;
@@ -74,26 +80,33 @@ export class ProductsComponent implements OnInit, OnChanges {
   }
 
   loadData() {
-    this.getSortingValueService.selectedValue$.subscribe(newSelectedValue => {
-      if (this.sortProduct) {
-        this.dataStateService.phones$.subscribe(products => {
-          this.products = this.sortProducts(products);
-        });
-      } else {
-        this.dataStateService.phones$.subscribe(products => {
-          if (newSelectedValue === 'name') {
-            this.products = products.sort((a, b) => a.name.localeCompare(b.name));
-          } else if (newSelectedValue === 'price') {
-            this.products = products.sort((a, b) => a.price - b.price);
-          } else {
-            this.products = products.sort((a, b) => b.year - a.year);
-          }
-          this.currentPage = 1;
-        });
-      }
-    });
+    if (this.favoriteProduct) {
+      this.loadFavoriteProducts();
+    } else {
+      this.getSortingValueService.selectedValue$.subscribe(newSelectedValue => {
+        if (this.sortProduct) {
+          this.dataStateService.phones$.subscribe(products => {
+            this.products = this.sortProducts(products);
+          });
+        } else {
+          this.dataStateService.phones$.subscribe(products => {
+            if (newSelectedValue === 'name') {
+              this.products = products.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (newSelectedValue === 'price') {
+              this.products = products.sort((a, b) => a.price - b.price);
+            } else {
+              this.products = products.sort((a, b) => b.year - a.year);
+            }
+            this.currentPage = 1;
+          });
+        }
+      });
+    }
   }
 
+  loadFavoriteProducts() {
+    this.products = this.favoriteGoodsService.getFavoriteProducts();
+  }
 
   onPageChange(page: number) {
     this.currentPage = page;
@@ -150,7 +163,8 @@ export class ProductsComponent implements OnInit, OnChanges {
       } else {
         heartIcon.classList.add('heart-icon--active');
         this.favouriteBadgeService.setFavouriteBadge(this.currentQuantity += 1);
-        this.favoriteGoodsService.addToFavorites(product.id);
+        this.favoriteGoodsService.addToFavorites(product, product.id);
+        this.favoriteProducts.push(product)
       }
     }
 

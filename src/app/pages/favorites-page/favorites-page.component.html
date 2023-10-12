@@ -2,4 +2,18 @@
 
 <app-small-navigation></app-small-navigation>
 
-<div style="height: 450px"></div>
+<div *ngIf="(productSearchService.foundProducts$ | async) === false">
+  <div class="favorite">
+    <h1>Favourites</h1>
+    <p class="favorite-quantity">{{ this.favoriteBadge }} items</p>
+
+
+    <app-products
+      [flexWrap]="true"
+      [oldPrice]="true"
+      favoriteProduct="favorite"
+      [marginTopClass]="'margin-top-small'"
+    ></app-products>
+  </div>
+</div>
+
