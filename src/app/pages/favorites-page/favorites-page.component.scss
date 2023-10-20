@@ -9,11 +9,30 @@ h1  {
 .favorite {
   max-width: 1156px;
   margin: auto;
+  //position: relative;
 
   &-quantity {
     font-size: 14px;
     line-height: 21px;
     color: var(--graySecondary);
     margin-top: 10px;
+  }
+
+  &-waiting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-weight: 500;
+      color: var(--grayPrimary);
+      max-width: 455px;
+      text-align: center;
+    }
+
+    &-svg {
+      width: 300px;
+    }
   }
 }
