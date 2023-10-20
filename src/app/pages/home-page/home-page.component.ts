@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GetProductService} from "../../services/get-product.service";
 import {QuantityGoodsService} from "../../services/quantityGoods.service";
+import {PaginationAccessService} from "../../services/pagination-access.service";
 
 @Component({
   selector: 'app-home-page',
@@ -16,15 +17,16 @@ export class HomePageComponent implements OnInit{
 
   constructor(
     public getProductService: GetProductService,
-    public quantityGoodsService: QuantityGoodsService
+    public quantityGoodsService: QuantityGoodsService,
+    private paginationAccessService: PaginationAccessService,
   ) {
   }
 
   ngOnInit(): void {
-
     this.getProductService.getAllProducts().subscribe( (products) => {
       this.quantityPhones = this.quantityGoodsService.calculateQuantity(products, 'phones')
     })
+    this.paginationAccessService.setPaginationAccess(false);
   }
 
 }

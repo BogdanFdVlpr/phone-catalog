@@ -49,7 +49,10 @@
     </div>
 
   </div>
-  <div class="pagination-controls">
+  <div
+    class="pagination-controls"
+    *ngIf="pagination"
+  >
     <pagination-controls
       (pageChange)="onPageChange( $event)"
       class="pagination"

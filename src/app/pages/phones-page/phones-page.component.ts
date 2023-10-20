@@ -4,6 +4,7 @@ import {GetProductService} from "../../services/get-product.service";
 import {IProducts} from "../../models/product";
 import {ProductSearchService} from "../../services/product-search.service";
 import {ChooseItemsOnPageService} from "../../services/chooseItemsOnPage.service";
+import {PaginationAccessService} from "../../services/pagination-access.service";
 
 @Component({
   selector: 'app-phones-page',
@@ -20,6 +21,7 @@ export class PhonesPageComponent implements OnInit {
     public quantityGoodsService: QuantityGoodsService,
     public productSearchService: ProductSearchService,
     private paginationService: ChooseItemsOnPageService,
+    private paginationAccessService: PaginationAccessService,
   ) {
   }
 
@@ -27,6 +29,8 @@ export class PhonesPageComponent implements OnInit {
     this.getProductService.getAllProducts().subscribe( (products) => {
       this.quantityPhones = this.quantityGoodsService.calculateQuantity(products, 'phones')
     })
+
+    this.paginationAccessService.setPaginationAccess(true);
   }
 
   onPageChange(event: any) {

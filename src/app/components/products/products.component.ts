@@ -17,6 +17,7 @@ import { GetSortingValueService } from "../../services/get-sorting-value.service
 import { ChooseItemsOnPageService } from "../../services/chooseItemsOnPage.service";
 import { FavouriteBadgeService } from "../../services/favourite-badge.service";
 import {FavoriteGoodsService} from "../../services/favorite-goods.service";
+import {PaginationAccessService} from "../../services/pagination-access.service";
 
 @Component({
   selector: 'app-products',
@@ -41,6 +42,7 @@ export class ProductsComponent implements OnInit, OnChanges {
   products: IProducts[] = [];
   favoriteProducts: IProducts[] = [];
   currentPage: number = 1;
+  pagination: boolean = false;
 
   constructor(
       public dataStateService: DataStateService,
@@ -51,11 +53,14 @@ export class ProductsComponent implements OnInit, OnChanges {
       public chooseItemsOnPageService: ChooseItemsOnPageService,
       public favouriteBadgeService: FavouriteBadgeService,
       public favoriteGoodsService: FavoriteGoodsService,
+      private paginationAccessService: PaginationAccessService,
   ) {
   }
 
   ngOnInit(): void {
     this.loadData();
+
+    this.paginationAccessService.paginationAccess$.subscribe(val => this.pagination = val)
 
     if (this.favoriteProduct) {
       this.loadFavoriteProducts();
