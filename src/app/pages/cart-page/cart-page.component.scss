@@ -1,0 +1,17 @@
+.small-navigation {
+  max-width: 1156px;
+  margin: 24px auto 40px;
+
+  a {
+    width: 66px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+.link {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--graySecondary);
+}

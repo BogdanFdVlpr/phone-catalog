@@ -26,6 +26,8 @@
     </a>
     <a routerLink="cart" (click)="activateCartPageOpen()">
       <img routerLinkActive="active-nav" class="header-icon" src="../../../assets/img/icons/basket-icon.svg" alt="basket icon">
+      <div *ngIf="showCartBadge()" [matBadge]="cartBadge" class="favourite-badge" matBadgeColor="warn" matBadgeSize="small">
+      </div>
     </a>
   </div>
 </nav>

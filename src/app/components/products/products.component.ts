@@ -18,6 +18,7 @@ import { ChooseItemsOnPageService } from "../../services/chooseItemsOnPage.servi
 import { FavouriteBadgeService } from "../../services/favourite-badge.service";
 import {FavoriteGoodsService} from "../../services/favorite-goods.service";
 import {PaginationAccessService} from "../../services/pagination-access.service";
+import {CartBadgeService} from "../../services/cart-badge.service";
 
 @Component({
   selector: 'app-products',
@@ -54,6 +55,7 @@ export class ProductsComponent implements OnInit, OnChanges {
       public favouriteBadgeService: FavouriteBadgeService,
       public favoriteGoodsService: FavoriteGoodsService,
       private paginationAccessService: PaginationAccessService,
+      private cartBadgeService: CartBadgeService,
   ) {
   }
 
@@ -156,21 +158,35 @@ export class ProductsComponent implements OnInit, OnChanges {
     cardsElement.scrollLeft -= 289;
   }
 
-  currentQuantity = this.favouriteBadgeService.favouriteBadgeSubject.value;
+  currentFavoriteQuantity = this.favouriteBadgeService.favouriteBadgeSubject.value;
+  currentCartQuantity = this.cartBadgeService.cartBadgeSubject.value;
 
   addToFavorite(product: IProducts, event: MouseEvent) {
       const heartIcon = event.target as HTMLElement;
 
       if (heartIcon.classList.contains('heart-icon--active')) {
         heartIcon.classList.remove('heart-icon--active');
-        this.favouriteBadgeService.setFavouriteBadge(this.currentQuantity -= 1);
+        this.favouriteBadgeService.setFavouriteBadge(this.currentFavoriteQuantity -= 1);
         this.favoriteGoodsService.removeFromFavorites(product.id);
       } else {
         heartIcon.classList.add('heart-icon--active');
-        this.favouriteBadgeService.setFavouriteBadge(this.currentQuantity += 1);
+        this.favouriteBadgeService.setFavouriteBadge(this.currentFavoriteQuantity += 1);
         this.favoriteGoodsService.addToFavorites(product, product.id);
         this.favoriteProducts.push(product)
       }
     }
 
+    addToCart(product: IProducts, event: MouseEvent) {
+      const addToCartButton = event.target as HTMLElement;
+
+      if (addToCartButton.classList.contains('card-button-add--active')) {
+        addToCartButton.classList.remove('card-button-add--active');
+        this.cartBadgeService.setCartBadge(this.currentCartQuantity -= 1)
+        this.favoriteGoodsService.removeFromCartArray(product.id)
+      } else {
+        addToCartButton.classList.add('card-button-add--active')
+        this.cartBadgeService.setCartBadge(this.currentCartQuantity += 1)
+        this.favoriteGoodsService.addToCartArray(product, product.id)
+      }
+    }
 }

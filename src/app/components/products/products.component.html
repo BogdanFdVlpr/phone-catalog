@@ -39,7 +39,13 @@
       </div>
 
       <div class="card-buttons">
-        <div class="card-button-add">Add to cart</div>
+        <div
+          class="card-button-add"
+          (click)="addToCart(product, $event)"
+          [ngClass]="{'card-button-add--active': favoriteGoodsService.isAddedToCart(product.id) }"
+        >
+          Add to cart
+        </div>
         <div
           class="heart-icon"
           (click)="addToFavorite(product, $event)"
