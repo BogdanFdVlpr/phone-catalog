@@ -3,6 +3,7 @@ import {GetTitleUrlService} from "../../services/getTitleUrl.service";
 import {HandlingInputValueService} from "../../services/handling-input-value.service";
 import {FavouriteBadgeService} from "../../services/favourite-badge.service";
 import {CartBadgeService} from "../../services/cart-badge.service";
+import {ChangeVisibleHeaderService} from "../../services/change-visible-header.service";
 
 @Component({
   selector: 'app-header',
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
     private handlingInputValueService: HandlingInputValueService,
     private favouriteBadgeService: FavouriteBadgeService,
     private cartBadgeService: CartBadgeService,
+    private changeVisibleHeaderService: ChangeVisibleHeaderService,
   ) {}
 
   ngOnInit(): void {
@@ -31,8 +33,9 @@ export class HeaderComponent implements OnInit {
       this.linkTitle = linkTitle;
       this.handleLinkTitleChange();
     });
-    this.favouriteBadgeService.favouriteBadge$.subscribe(quantity => this.favoriteBadge = quantity)
-    this.cartBadgeService.cartBadge$.subscribe(quantity => this.cartBadge = quantity)
+    this.favouriteBadgeService.favouriteBadge$.subscribe(quantity => this.favoriteBadge = quantity);
+    this.cartBadgeService.cartBadge$.subscribe(quantity => this.cartBadge = quantity);
+    this.changeVisibleHeaderService.visibleHeader$.subscribe(status => this.cartPageOpen = status)
   }
 
   showFavoriteBadge() {
@@ -65,10 +68,10 @@ export class HeaderComponent implements OnInit {
   }
 
   activateCartPageOpen() {
-    this.cartPageOpen = true;
+    this.changeVisibleHeaderService.setVisibleHeader(true)
   }
 
   clearCartPageOpen() {
-    this.cartPageOpen = false;
+    this.changeVisibleHeaderService.setVisibleHeader(false)
   }
 }
