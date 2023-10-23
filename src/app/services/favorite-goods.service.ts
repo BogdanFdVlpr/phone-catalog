@@ -26,7 +26,7 @@ export class FavoriteGoodsService {
 
       const indexToRemove = this.favoriteArrayGoods.findIndex((favProduct) => favProduct.id === productId);
       if (indexToRemove !== -1) {
-        this.favoriteArrayGoods.splice(indexToRemove, 1); // Remove the product from the array
+        this.favoriteArrayGoods.splice(indexToRemove, 1);
       }
     }
   }

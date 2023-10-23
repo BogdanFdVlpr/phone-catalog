@@ -5,4 +5,39 @@
   </a>
 </div>
 
-<div style="height: 450px"></div>
+<div class="cart">
+  <h1>Cart</h1>
+
+  <div class="cart-empty" *ngIf="products.length < 1">
+    <img src="/assets/img/cart_shipping.png" alt="cart shipping">
+    <h2>Your cart is currently empty</h2>
+    <p>Before proceed to checkout, you must add some products to your cart.</p>
+  </div>
+
+  <div class="cart-container" *ngIf="products.length > 0">
+    <div class="cart-phones">
+      <div class="cart-phone" *ngFor="let product of products">
+        <img class="cart-phone-clear" src="/assets/img/icons/close-icon.svg" alt="close-icon" (click)="deletePhoneFromCart(product, $event)">
+        <img class="cart-phone-picture" [src]="'assets/' + product.image" alt="{{ product.name }}">
+        <p class="cart-phone-name">{{product.name}}</p>
+
+        <div class="cart-phone__choose-quantity">
+          <button class="cart-phone-minus" (click)="changeQuantityGoods(product, $event)">-</button>
+          <p class="cart-phone__quantity">1</p>
+          <button class="cart-phone-plus" (click)="changeQuantityGoods(product, $event)">+</button>
+        </div>
+
+        <p class="cart-phone__price">${{product.price}}</p>
+      </div>
+
+    </div>
+    <div class="cart-price">
+      <div class="cart-price__container">
+        <p class="cart-price__amount">${{fullPrice}}</p>
+        <p class="cart-price__quantity">Total for {{currentCartQuantity}} items</p>
+      </div>
+      <div class="cart-price__line"></div>
+      <button>Checkout</button>
+    </div>
+  </div>
+</div>
