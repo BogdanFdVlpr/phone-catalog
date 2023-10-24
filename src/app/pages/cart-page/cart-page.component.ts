@@ -16,6 +16,7 @@ export class CartPageComponent implements OnInit{
   products: IProducts[] = [];
   fullPrice: number = 0;
   currentCartQuantity = this.cartBadgeService.cartBadgeSubject.value;
+  quantities = new Map<number, number>();
   constructor(
     private changeVisibleHeaderService: ChangeVisibleHeaderService,
     private rememberNavigationService: RememberNavigationService,
@@ -28,7 +29,34 @@ export class CartPageComponent implements OnInit{
         this.loadCartProducts()
         this.changeVisibleHeaderService.visibleHeader$.subscribe(status => this.cartPageOpen = status);
         this.fullPrice = this.products.reduce((sum, product) => sum + product.price, 0);
+        this.products.forEach(product => {
+          this.quantities.set(product.id, 1);
+        });
     }
+
+  updateQuantity(product: IProducts, increment: boolean) {
+    let currentQuantity: number = this.quantities.get(product.id) as number;
+    if (currentQuantity !== undefined) {
+      if (increment) {
+        this.quantities.set(product.id, currentQuantity + 1);
+        product.price += product.fullPrice;
+      } else {
+        if (currentQuantity > 1) {
+          this.quantities.set(product.id, currentQuantity - 1);
+          product.price -= product.fullPrice;
+        }
+      }
+      this.updateCartTotal();
+    }
+  }
+
+  updateCartTotal() {
+    this.fullPrice = this.products.reduce((total, product) => total + product.price, 0);
+  }
+
+  checkCartTotalAmount(product: IProducts) {
+    return this.quantities.get(product.id)! <= 1;
+  }
 
   loadCartProducts() {
     this.products = this.favoriteGoodsService.getCartProductsArray();
@@ -57,6 +85,8 @@ export class CartPageComponent implements OnInit{
 
     console.log(click)
   }
+
+
 
 
 }

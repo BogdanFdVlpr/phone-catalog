@@ -22,9 +22,9 @@
         <p class="cart-phone-name">{{product.name}}</p>
 
         <div class="cart-phone__choose-quantity">
-          <button class="cart-phone-minus" (click)="changeQuantityGoods(product, $event)">-</button>
-          <p class="cart-phone__quantity">1</p>
-          <button class="cart-phone-plus" (click)="changeQuantityGoods(product, $event)">+</button>
+          <button class="cart-phone-minus" (click)="updateQuantity(product, false)" [disabled]="checkCartTotalAmount(product)">-</button>
+          <p class="cart-phone__quantity">{{ quantities.get(product.id) }}</p>
+          <button class="cart-phone-plus" (click)="updateQuantity(product, true)">+</button>
         </div>
 
         <p class="cart-phone__price">${{product.price}}</p>
