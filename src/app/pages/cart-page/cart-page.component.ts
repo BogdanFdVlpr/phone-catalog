@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {ChangeVisibleHeaderService} from "../../services/change-visible-header.service";
 import {RememberNavigationService} from "../../services/remember-navigation.service";
 import {FavoriteGoodsService} from "../../services/favorite-goods.service";
@@ -22,6 +22,8 @@ export class CartPageComponent implements OnInit{
     private rememberNavigationService: RememberNavigationService,
     private favoriteGoodsService: FavoriteGoodsService,
     private cartBadgeService: CartBadgeService,
+    private renderer: Renderer2,
+    private el: ElementRef,
   ) {
     this.lastVisitedPage = this.rememberNavigationService.getLastVisitedPage();
   }
@@ -80,13 +82,14 @@ export class CartPageComponent implements OnInit{
     }
   }
 
-  changeQuantityGoods(product: IProducts, event: MouseEvent) {
-    const click = event.target as HTMLElement;
-
-    console.log(click)
+  checkoutFeature() {
+    const checkout = this.el.nativeElement.querySelector('.checkout');
+    this.renderer.removeClass(checkout,'checkout--hidden');
+    setTimeout(() => {
+      if (checkout) {
+        this.renderer.addClass(checkout, 'checkout--hidden');
+      }
+    }, 5000);
   }
-
-
-
 
 }

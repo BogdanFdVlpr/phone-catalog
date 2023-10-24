@@ -31,13 +31,23 @@
       </div>
 
     </div>
-    <div class="cart-price">
-      <div class="cart-price__container">
-        <p class="cart-price__amount">${{fullPrice}}</p>
-        <p class="cart-price__quantity">Total for {{currentCartQuantity}} items</p>
+    <div class="checkout-container">
+      <div class="cart-price">
+        <div class="cart-price__container">
+          <p class="cart-price__amount">${{fullPrice}}</p>
+          <p class="cart-price__quantity">Total for {{currentCartQuantity}} items</p>
+        </div>
+        <div class="cart-price__line"></div>
+        <button (click)="checkoutFeature()">Checkout</button>
       </div>
-      <div class="cart-price__line"></div>
-      <button>Checkout</button>
+      <div class="checkout checkout--hidden">
+        <h3>
+          We are sorry, but this feature is not implemented yet
+        </h3>
+      </div>
     </div>
+
   </div>
+
+
 </div>

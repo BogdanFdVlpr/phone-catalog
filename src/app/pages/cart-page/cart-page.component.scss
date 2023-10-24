@@ -177,8 +177,35 @@ h1  {
       }
 
       &:active {
-        background-color: var(--graySecondary);
+        background-color: var(--graySecondary), .10;
+        color: var(--grayPrimary);
       }
     }
+  }
+}
+
+.checkout {
+  box-sizing: border-box;
+  margin-top: 15px;
+  padding: 10px;
+  width: 370px;
+  height: 150px;
+  background-color: rgba(#E2E6E9, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h3 {
+    text-align: center;
+    color: var(--grayPrimary);
+  }
+
+  &--hidden {
+    display: none;
   }
 }
