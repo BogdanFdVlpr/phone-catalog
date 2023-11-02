@@ -19,6 +19,8 @@ import { FavouriteBadgeService } from "../../services/favourite-badge.service";
 import {FavoriteGoodsService} from "../../services/favorite-goods.service";
 import {PaginationAccessService} from "../../services/pagination-access.service";
 import {CartBadgeService} from "../../services/cart-badge.service";
+import {ProductDetailsService} from "../../services/product-details.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -56,6 +58,8 @@ export class ProductsComponent implements OnInit, OnChanges {
       public favoriteGoodsService: FavoriteGoodsService,
       private paginationAccessService: PaginationAccessService,
       private cartBadgeService: CartBadgeService,
+      private productDetailsService: ProductDetailsService,
+      private router: Router,
   ) {
   }
 
@@ -188,5 +192,10 @@ export class ProductsComponent implements OnInit, OnChanges {
         this.cartBadgeService.setCartBadge(this.currentCartQuantity += 1)
         this.favoriteGoodsService.addToCartArray(product, product.id)
       }
+    }
+
+    productDetails(product: IProducts) {
+      this.productDetailsService.setProductDetails(product)
+      this.router.navigate(['product', product.phoneId]);
     }
 }

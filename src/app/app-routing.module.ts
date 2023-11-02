@@ -7,6 +7,7 @@ import {AccessoriesPageComponent} from "./pages/accessories-page/accessories-pag
 import {FavoritesPageComponent} from "./pages/favorites-page/favorites-page.component";
 import {CartPageComponent} from "./pages/cart-page/cart-page.component";
 import {RememberNavigationService} from "./services/remember-navigation.service";
+import {ProductDetailsPageComponent} from "./pages/product-details-page/product-details-page.component";
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'accessories', component: AccessoriesPageComponent},
   {path: 'favorites', component: FavoritesPageComponent},
   {path: 'cart', component: CartPageComponent},
+  {path: 'product/:productId', component: ProductDetailsPageComponent},
 ];
 
 @NgModule({

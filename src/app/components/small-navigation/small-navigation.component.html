@@ -1,5 +1,13 @@
-<div class="small-navigation">
+<div class="small-navigation" *ngIf="linkTitle">
   <img routerLink="/" class="small-navigation__item link" src="assets/img/icons/home-icon.svg" alt="">
   <img class="small-navigation__item" src="assets/img/icons/arrow-next-icon.svg" alt="">
   <p class="small-navigation__item link" *ngIf="linkTitle">{{linkTitle.join(' ') | titlecase}}</p>
+</div>
+
+<div class="small-navigation" *ngIf="productTitle">
+  <img routerLink="/" class="small-navigation__item link" src="assets/img/icons/home-icon.svg" alt="">
+  <img class="small-navigation__item" src="assets/img/icons/arrow-next-icon.svg" alt="">
+  <p class="small-navigation__item link" routerLink="/phones">Phones</p>
+  <img class="small-navigation__item" src="assets/img/icons/arrow-next-icon.svg" alt="">
+  <p class="small-navigation__item link">{{productTitle | titlecase}}</p>
 </div>

@@ -29,6 +29,7 @@ import { FilterProductsPipe } from "./pipes/filter-products.pipe";
 import { NoFoundContentComponent } from './components/no-found-content/no-found-content.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatIconModule} from "@angular/material/icon";
+import { ProductDetailsPageComponent } from './pages/product-details-page/product-details-page.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {MatIconModule} from "@angular/material/icon";
     SmallNavigationComponent,
     FilterProductsPipe,
     NoFoundContentComponent,
+    ProductDetailsPageComponent,
   ],
   imports: [
     BrowserModule,

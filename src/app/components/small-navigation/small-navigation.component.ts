@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GetTitleUrlService} from "../../services/getTitleUrl.service";
 
 @Component({
@@ -8,13 +8,20 @@ import {GetTitleUrlService} from "../../services/getTitleUrl.service";
 })
 export class SmallNavigationComponent implements OnInit{
 
-  linkTitle?: string[]
+  linkTitle?: string[];
+  productTitle = '';
 
   constructor(
     private getTitleUrlService: GetTitleUrlService,
   ) {}
 
   ngOnInit(): void {
-    this.getTitleUrlService.headerLink$.subscribe((linkTitle) => this.linkTitle = linkTitle)
+    this.getTitleUrlService.headerLink$.subscribe((linkTitle) => {
+      if (linkTitle.length < 2) {
+        this.linkTitle = linkTitle
+      } else {
+        this.productTitle = linkTitle.slice(-1).join(' ').replace(/[:-]/g, ' ');
+      }
+    })
     }
 }
