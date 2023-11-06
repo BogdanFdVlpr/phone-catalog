@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductDetailsService } from "../../services/product-details.service";
+import {IProducts} from "../../models/product";
 
 @Component({
   selector: 'app-product-details-page',
@@ -7,16 +8,26 @@ import { ProductDetailsService } from "../../services/product-details.service";
   styleUrls: ['./product-details-page.component.scss']
 })
 export class ProductDetailsPageComponent implements OnInit {
-  productDetails: any;
+  productDetails!: IProducts;
+  phoneFolder: string = '';
+  phoneColor: string = '';
+
 
   constructor(private productDetailsService: ProductDetailsService) {}
 
   ngOnInit(): void {
-    this.productDetailsService.productDetails$.subscribe((product) => {
+    this.productDetailsService.productDetails$.subscribe((product: IProducts) => {
       if (product) {
         this.productDetails = product;
       }
     });
-    console.log(this.productDetails[0]);
+    const phoneArray = this.productDetails.phoneId!.split('-');
+    this.phoneFolder = phoneArray.slice(0, -2).join('-');
+    this.phoneColor = phoneArray.slice(-1).join('-');
+  }
+
+
+  get imageSource(): string {
+    return `/assets/img/phones/${this.phoneFolder}/${this.phoneColor}/`;
   }
 }

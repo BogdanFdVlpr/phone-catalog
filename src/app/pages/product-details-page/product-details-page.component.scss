@@ -2,6 +2,46 @@
   max-width: 1156px;
   margin: auto;
 
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--grayPrimary);
+    max-width: 800px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__images {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &-main {
+      max-width: 442px;
+      margin-right: 16px;
+      padding: 11px;
+    }
+
+    &-small {
+      max-width: 66px;
+      max-height: 66px;
+      object-fit: contain;
+      padding: 7px;
+      border: 1px solid var(--gray);
+
+      &-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 16px;
+      }
+    }
+  }
+
 }
 
 .small-navigation {

@@ -8,5 +8,19 @@
 </div>
 
 <div class="product-details">
-    <h1>{{ productDetails }}</h1>
+    <h1>{{ productDetails.name }}</h1>
+  <div class="product-details__container">
+    <div class="product-details__images">
+      <div class="product-details__images-small-container">
+        <img class="product-details__images-small" [src]="imageSource + '00.jpg'" alt="">
+        <img class="product-details__images-small" [src]="imageSource + '01.jpg'" alt="">
+        <img class="product-details__images-small" [src]="imageSource + '02.jpg'" alt="">
+        <img class="product-details__images-small" [src]="imageSource + '03.jpg'" alt="">
+        <img class="product-details__images-small" [src]="imageSource + '04.jpg'" alt="">
+      </div>
+      <div >
+        <img class="product-details__images-main" [src]="imageSource + '00.jpg'" alt="">
+      </div>
+    </div>
+  </div>
 </div>
