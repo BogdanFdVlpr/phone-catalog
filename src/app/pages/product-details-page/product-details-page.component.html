@@ -7,20 +7,78 @@
   </a>
 </div>
 
-<div class="product-details">
-    <h1>{{ productDetails.name }}</h1>
+<div class="product-details" *ngIf="productDetailInfo">
+    <h1>{{ productDetailInfo.name }}</h1>
   <div class="product-details__container">
     <div class="product-details__images">
-      <div class="product-details__images-small-container">
-        <img class="product-details__images-small" [src]="imageSource + '00.jpg'" alt="">
-        <img class="product-details__images-small" [src]="imageSource + '01.jpg'" alt="">
-        <img class="product-details__images-small" [src]="imageSource + '02.jpg'" alt="">
-        <img class="product-details__images-small" [src]="imageSource + '03.jpg'" alt="">
-        <img class="product-details__images-small" [src]="imageSource + '04.jpg'" alt="">
+      <div class="product-details__images-small-container" >
+        <img
+          class="product-details__images-small"
+          *ngFor="let image of productDetailInfo.images"
+          [src]="'assets/' + image" alt="phones"
+        >
       </div>
       <div >
-        <img class="product-details__images-main" [src]="imageSource + '00.jpg'" alt="">
+        <img class="product-details__images-main" [src]="'assets/' + productDetails.image" alt="">
       </div>
+    </div>
+    <div class="product-details__main-information">
+      <div class="product-details__colors">
+        <p>Available colors</p>
+        <div class="product-details__colors-container">
+          <div class="product-details__colors-circle" *ngFor="let circle of productDetailInfo.colorsAvailable">
+            <div class="product-details__colors-circle-background" title="{{circle}}" [style.background-color]="getColor(circle)">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-details__line"></div>
+
+      <div class="product-details__memory">
+        <p>Select capacity</p>
+        <div class="product-details__memory-category">
+          <div *ngFor="let capacity of productDetailInfo.capacityAvailable; let i = index">
+            <input
+              type="radio"
+              name="memoryPhone"
+              [id]="capacity"
+              [value]="capacity"
+              [checked]="i == 0"
+            >
+            <label [for]="capacity">
+              <div>
+                {{capacity}}
+              </div>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="product-details__line"></div>
+
+      <div class="product-details__price">
+        <p class="product-details__price--regular">${{productDetailInfo.priceRegular}}</p>
+        <p class="product-details__price--discount">${{productDetailInfo.priceDiscount}}</p>
+      </div>
+
+      <div class="card-buttons">
+        <div
+          class="card-button-add"
+          (click)="addToCart(productDetails, $event)"
+          [ngClass]="{'card-button-add--active': favoriteGoodsService.isAddedToCart(productDetails.id) }"
+        >
+          Add to cart
+        </div>
+        <div
+          class="heart-icon"
+          (click)="addToFavorite(productDetails, $event)"
+          [ngClass]="{ 'heart-icon--active': favoriteGoodsService.isFavorite(productDetails.id) }"
+        ></div>
+      </div>
+    </div>
+    <div class="product-details__id">
+      ID: {{getRandomID()}}
     </div>
   </div>
 </div>

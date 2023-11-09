@@ -12,9 +12,9 @@
       class="card"
       [class.cards--flex-wrap]="flexWrap"
       *ngFor="let product of products | filterProducts: textFilter | paginate: { itemsPerPage: (chooseItemsOnPageService.currentPage$ | async)!, currentPage: currentPage, totalItems: products.length }"
-      (click)="productDetails(product)"
+
     >
-      <img [src]="'assets/' + product.image" alt="{{ product.name }}">
+      <img [src]="'assets/' + product.image" alt="{{ product.name }}" (click)="productDetails(product)">
       <h2>{{ product.name }}</h2>
       <div class="price-container">
         <div class="actual-price">${{ product.price | number:'1.0-0' }}</div>

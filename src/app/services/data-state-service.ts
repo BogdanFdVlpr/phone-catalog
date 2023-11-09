@@ -8,7 +8,8 @@ import {IProducts} from "../models/product";
 })
 export class DataStateService {
 
-  phones$: BehaviorSubject<IProducts[]> = new BehaviorSubject<IProducts[]>([])
+  phones$: BehaviorSubject<IProducts[]> = new BehaviorSubject<IProducts[]>([]);
+  phoneDetails$: BehaviorSubject<any> = new BehaviorSubject<any>({})
 
    constructor(
     private getProductService: GetProductService,
