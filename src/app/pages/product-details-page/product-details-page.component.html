@@ -76,6 +76,25 @@
           [ngClass]="{ 'heart-icon--active': favoriteGoodsService.isFavorite(productDetails.id) }"
         ></div>
       </div>
+
+      <div class="product-details__info">
+        <div class="product-details__major-info">
+          <p>Screen</p>
+          <p>{{productDetailInfo.screen}}</p>
+        </div>
+        <div class="product-details__major-info">
+          <p>Resolution</p>
+          <p>{{productDetailInfo.resolution}}</p>
+        </div>
+        <div class="product-details__major-info">
+          <p>Processor</p>
+          <p>{{productDetailInfo.processor}}</p>
+        </div>
+        <div class="product-details__major-info">
+          <p>RAM</p>
+          <p>{{productDetailInfo.ram}}</p>
+        </div>
+      </div>
     </div>
     <div class="product-details__id">
       ID: {{getRandomID()}}

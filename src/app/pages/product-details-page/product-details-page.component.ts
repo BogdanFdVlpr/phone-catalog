@@ -107,6 +107,4 @@ export class ProductDetailsPageComponent implements OnInit {
         return '#000000';
     }
   }
-
-
 }

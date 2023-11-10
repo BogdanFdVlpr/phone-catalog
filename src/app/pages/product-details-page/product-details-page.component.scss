@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-top: 15px;
   }
 
   &__main-information {
@@ -23,6 +24,23 @@
     font-weight: 600;
     max-width: 320px;
     min-width: 320px;
+  }
+
+  &__info {
+    margin-top: 32px;
+  }
+
+  &__major-info {
+    display: flex;
+    justify-content: space-between;
+
+    p:last-child {
+      color: var(--grayPrimary);
+    }
+
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
   }
 
   &__id {
@@ -72,8 +90,10 @@
 
     &-main {
       max-width: 442px;
+      max-height: 442px;
+      object-fit: cover;
       margin-right: 16px;
-      padding: 11px;
+      //padding: 11px;
     }
 
     &-small {
@@ -88,6 +108,7 @@
         flex-direction: column;
         justify-content: space-evenly;
         gap: 16px;
+        margin-right: 80px;
       }
     }
   }
