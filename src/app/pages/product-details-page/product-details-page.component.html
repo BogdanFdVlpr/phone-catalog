@@ -100,4 +100,55 @@
       ID: {{getRandomID()}}
     </div>
   </div>
+
+  <div class="product">
+
+    <div class="product-about" >
+      <h3>About</h3>
+      <div class="product-details__line"></div>
+      <div *ngFor="let desc of productDetailInfo.description">
+        <h4>{{ desc.title }}</h4>
+        <p>{{ desc.text }}</p>
+      </div>
+    </div>
+
+    <div class="product-tech">
+      <h3>Tech specs</h3>
+      <div class="product-details__line"></div>
+      <div class="product-details__info">
+        <div class="product-details__major-info">
+          <p>Screen</p>
+          <p>{{productDetailInfo.screen}}</p>
+        </div>
+        <div class="product-details__major-info">
+          <p>Resolution</p>
+          <p>{{productDetailInfo.resolution}}</p>
+        </div>
+        <div class="product-details__major-info">
+          <p>Processor</p>
+          <p>{{productDetailInfo.processor}}</p>
+        </div>
+        <div class="product-details__major-info">
+          <p>RAM</p>
+          <p>{{productDetailInfo.ram}}</p>
+        </div>
+        <div class="product-details__major-info">
+          <p>Built in memory</p>
+          <p>{{productDetailInfo.capacity}}</p>
+        </div>
+        <div class="product-details__major-info">
+          <p>Camera</p>
+          <p>{{productDetailInfo.camera}}</p>
+        </div>
+        <div class="product-details__major-info">
+          <p>Zoom</p>
+          <p>{{productDetailInfo.zoom}}</p>
+        </div>
+        <div class="product-details__major-info">
+          <p>Cell</p>
+          <p>{{productDetailInfo.cell}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

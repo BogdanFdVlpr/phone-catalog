@@ -1,6 +1,9 @@
 .product-details {
   max-width: 1156px;
   margin: 20px auto;
+  color: var(--graySecondary);
+  font-size: 12px;
+  font-weight: 600;
 
   h1 {
     font-size: 32px;
@@ -19,9 +22,9 @@
   &__main-information {
     display: flex;
     flex-direction: column;
-    color: var(--graySecondary);
-    font-size: 12px;
-    font-weight: 600;
+    //color: var(--graySecondary);
+    //font-size: 12px;
+    //font-weight: 600;
     max-width: 320px;
     min-width: 320px;
   }
@@ -245,5 +248,46 @@
 
   &--active {
     background: url("/assets/img/icons/heart-red-icon.svg") center no-repeat;
+  }
+}
+
+.product {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 90px;
+  gap: 64px;
+  font-weight: 400;
+
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 30.80px;
+    color: var(--grayPrimary);
+  }
+
+
+  &-about {
+    max-width: 560px;
+    flex-shrink: 1;
+
+    h4 {
+      color: var(--grayPrimary);
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 32px;
+    }
+
+    p {
+      color: var(--graySecondary);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+      margin-top: 18px;
+    }
+  }
+
+  &-tech {
+    flex-shrink: 1;
+    flex-grow: 1;
   }
 }

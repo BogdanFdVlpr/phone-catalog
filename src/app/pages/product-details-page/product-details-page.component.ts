@@ -34,6 +34,7 @@ export class ProductDetailsPageComponent implements OnInit {
     if (this.productDetails.itemId) {
       this.getProductService.getDetailsAboutProduct(this.productDetails.itemId).subscribe(detail => this.productDetailInfo = detail)
     }
+
   }
 
   getRandomID() {
