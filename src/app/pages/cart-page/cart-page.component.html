@@ -1,6 +1,6 @@
 <div class="small-navigation">
   <a routerLink="{{lastVisitedPage}}" (click)="clearCartPageOpen()">
-    <img  class="small-navigation__item" src="./assets/img/icons/arrow-prev-icon.svg" alt="">
+    <img  class="small-navigation__item" src="assets/img/icons/arrow-prev-icon.svg" alt="">
     <span class="small-navigation__item link">Back</span>
   </a>
 </div>
@@ -9,7 +9,7 @@
   <h1>Cart</h1>
 
   <div class="cart-empty" *ngIf="products.length < 1">
-    <img src="./assets/img/cart_shipping.png" alt="cart shipping">
+    <img src="assets/img/cart_shipping.png" alt="cart shipping">
     <h2>Your cart is currently empty</h2>
     <p>Before proceed to checkout, you must add some products to your cart.</p>
   </div>
@@ -17,8 +17,8 @@
   <div class="cart-container" *ngIf="products.length > 0">
     <div class="cart-phones">
       <div class="cart-phone" *ngFor="let product of products">
-        <img class="cart-phone-clear" src="./assets/img/icons/close-icon.svg" alt="close-icon" (click)="deletePhoneFromCart(product, $event)">
-        <img class="cart-phone-picture" [src]="'./assets/' + product.image" alt="{{ product.name }}">
+        <img class="cart-phone-clear" src="assets/img/icons/close-icon.svg" alt="close-icon" (click)="deletePhoneFromCart(product, $event)">
+        <img class="cart-phone-picture" [src]="'assets/' + product.image" alt="{{ product.name }}">
         <p class="cart-phone-name">{{product.name}}</p>
 
         <div class="cart-phone__choose-quantity">
