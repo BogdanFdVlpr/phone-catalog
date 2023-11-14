@@ -162,10 +162,10 @@ button {
   min-height: 40px;
   border: 1px solid var(--grayPrimary);
   cursor: pointer;
-  background: url("/assets/img/icons/heart-icon.svg") center no-repeat;
+  background: url("assets/img/icons/heart-icon.svg") center no-repeat;
 
   &--active {
-    background: url("/assets/img/icons/heart-red-icon.svg") center no-repeat;
+    background: url("assets/img/icons/heart-red-icon.svg") center no-repeat;
   }
 }
 
@@ -217,14 +217,14 @@ button {
 
 :host ::ng-deep .pagination .ngx-pagination .pagination-previous {
   font-size: 0;
-  background-image: url("/assets/img/icons/arrow-prev-icon.svg");
+  background-image: url("assets/img/icons/arrow-prev-icon.svg");
   background-position: center;
   background-repeat: no-repeat;
   margin-right: 16px;
 }
 :host ::ng-deep .pagination .ngx-pagination .pagination-next {
   font-size: 0;
-  background-image: url("/assets/img/icons/arrow-next-icon.svg");
+  background-image: url("assets/img/icons/arrow-next-icon.svg");
   background-position: center;
   background-repeat: no-repeat;
   margin-left: 8px;
