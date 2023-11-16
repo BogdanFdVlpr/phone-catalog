@@ -175,19 +175,23 @@ button {
     display: block;
   }
 
-  img.heart-icon--red {
+  img.heart-icon--active.heart-icon--red {
+    display: block;
+  }
+
+  img.heart-icon--active.heart-icon--transparent {
     display: none;
   }
 
-  &--active {
-    img.heart-icon--transparent {
-      display: none;
-    }
-
-    img.heart-icon--red {
-      display: block;
-    }
-  }
+  //&--active {
+  //  img.heart-icon--transparent {
+  //    display: none;
+  //  }
+  //
+  //  img.heart-icon--red {
+  //    display: block;
+  //  }
+  //}
 }
 
 .margin-top-small {
