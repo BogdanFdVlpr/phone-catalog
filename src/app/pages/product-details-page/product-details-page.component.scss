@@ -244,10 +244,10 @@
   min-height: 48px;
   border: 1px solid var(--grayPrimary);
   cursor: pointer;
-  background: url("assets/img/icons/heart-icon.svg") center no-repeat;
+  background: url("/assets/img/icons/heart-icon.svg") center no-repeat;
 
   &--active {
-    background: url("assets/img/icons/heart-red-icon.svg") center no-repeat;
+    background: url("/assets/img/icons/heart-red-icon.svg") center no-repeat;
   }
 }
 
