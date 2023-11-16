@@ -2,7 +2,7 @@
 
 <div class="small-navigation">
   <a routerLink="/phones">
-    <img  class="small-navigation__item" src="/assets/img/icons/arrow-prev-icon.svg" alt="">
+    <img  class="small-navigation__item" src="./assets/img/icons/arrow-prev-icon.svg" alt="">
     <span class="small-navigation__item link">Back</span>
   </a>
 </div>
@@ -15,11 +15,11 @@
         <img
           class="product-details__images-small"
           *ngFor="let image of productDetailInfo.images"
-          [src]="'/assets/' + image" alt="phones"
+          [src]="'./assets/' + image" alt="phones"
         >
       </div>
       <div >
-        <img class="product-details__images-main" [src]="'/assets/' + productDetails.image" alt="">
+        <img class="product-details__images-main" [src]="'./assets/' + productDetails.image" alt="">
       </div>
     </div>
     <div class="product-details__main-information">
