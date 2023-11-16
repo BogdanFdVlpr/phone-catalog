@@ -47,11 +47,16 @@
         >
           Add to cart
         </div>
+
         <div
           class="heart-icon"
           (click)="addToFavorite(product, $event)"
-          [ngClass]="{ 'heart-icon--active': favoriteGoodsService.isFavorite(product.id) }"
-        ></div>
+        >
+          <img [ngClass]="{ 'heart-icon--active': favoriteGoodsService.isFavorite(product.id) }" *ngIf="!favoriteGoodsService.isFavorite(product.id)" class="heart-icon--transparent" src="./assets/img/icons/heart-icon.svg" alt="">
+
+          <img [ngClass]="{ 'heart-icon--active': favoriteGoodsService.isFavorite(product.id) }" *ngIf="favoriteGoodsService.isFavorite(product.id)" class="heart-icon--red" src="./assets/img/icons/heart-red-icon.svg" alt="">
+        </div>
+
       </div>
     </div>
 
