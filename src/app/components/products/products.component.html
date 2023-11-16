@@ -2,8 +2,8 @@
 <div class="product-main">
   <h1 class="product-main-title">{{title}}</h1>
   <div class="product-main-arrow" [hidden]="!buttonScroll">
-    <button class="prev" (click)="scrollCardsLeft()"><img src="/assets/img/icons/arrow-prev-icon.svg" alt=""></button>
-    <button class="next" (click)="scrollCardsRight()"><img src="/assets/img/icons/arrow-next-icon.svg" alt=""></button>
+    <button class="prev" (click)="scrollCardsLeft()"><img src="./assets/img/icons/arrow-prev-icon.svg" alt=""></button>
+    <button class="next" (click)="scrollCardsRight()"><img src="./assets/img/icons/arrow-next-icon.svg" alt=""></button>
   </div>
 </div>
 
@@ -14,7 +14,7 @@
       *ngFor="let product of products | filterProducts: textFilter | paginate: { itemsPerPage: (chooseItemsOnPageService.currentPage$ | async)!, currentPage: currentPage, totalItems: products.length }"
 
     >
-      <img [src]="'/assets/' + product.image" alt="{{ product.name }}" (click)="productDetails(product)">
+      <img [src]="'./assets/' + product.image" alt="{{ product.name }}" (click)="productDetails(product)">
       <h2>{{ product.name }}</h2>
       <div class="price-container">
         <div class="actual-price">${{ product.price | number:'1.0-0' }}</div>
