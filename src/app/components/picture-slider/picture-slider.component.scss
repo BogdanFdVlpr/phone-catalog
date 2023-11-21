@@ -5,11 +5,9 @@ $transition_time:.2s;
 }
 
 .carousel {
-  width: 1136px;
+  max-width: 1136px;
   margin: 40px auto 0;
   height: 400px;
-
-
 
   .carousel {
     overflow: visible;
@@ -33,7 +31,7 @@ $transition_time:.2s;
       }
 
       .img {
-        width: 1040px;
+        max-width: 1040px;
         height: 400px;
         margin: auto;
         background-size: cover;
@@ -70,6 +68,12 @@ $transition_time:.2s;
       right: 50%;
     }
   }
+}
 
-
+@media(max-width:1056px) {
+  .carousel {
+    .click-area {
+      border: none;
+    }
+  }
 }

@@ -160,7 +160,7 @@ button {
 .heart-icon {
   min-width: 40px;
   min-height: 40px;
-  border: 1px solid var(--grayPrimary);
+  border: 1px solid var(--grayIconsPlaceholders);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -263,4 +263,8 @@ button {
 
 :host ::ng-deep .ngx-pagination a:hover {
   background-color: inherit;
+}
+
+@media(max-width:1056px) {
+
 }
