@@ -22,8 +22,8 @@ h1 {
     }
 
     img {
-      width: 368px;
-      height: 368px;
+      max-width: 368px;
+      max-height: 368px;
       object-position: top;
     }
   }
@@ -39,5 +39,67 @@ h1 {
     margin-top: 8px;
     font-size: 14px;
     color: var(--graySecondary);
+  }
+}
+
+@media (max-width: 1200px) {
+  .shop-category {
+    max-width: 867px;
+
+    &-cards {
+      justify-content: center;
+    }
+
+    &-card {
+      img {
+        max-width: 275px;
+        max-height: 275px;
+      }
+    }
+  }
+}
+
+@media (max-width: 927px) {
+  .shop-category {
+    max-width: 289px;
+
+
+
+    &-card {
+      img {
+        max-width: 175px;
+        max-height: 175px;
+      }
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .shop-category {
+    max-width: 578px;
+
+    h1 {
+      text-align: center;
+    }
+
+    &-name {
+      margin-top: 15px;
+    }
+
+    &-cards {
+      flex-wrap: wrap;
+    }
+
+    &-card {
+
+      &:not(:first-child) {
+        margin-top: 26px;
+      }
+
+      img {
+        max-width: 300px;
+        max-height: 300px;
+      }
+    }
   }
 }

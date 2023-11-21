@@ -14,14 +14,17 @@ button {
 
   &-main {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
 
     &-title {
       font-size: 32px;
       font-weight: 700;
       line-height: 40.9px;
       letter-spacing: -1%;
-      margin-bottom: 24px;
     }
 
     &-arrow {
@@ -45,6 +48,7 @@ button {
 
 .cards {
   display: flex;
+  justify-content: space-between;
   max-width: 1156px;
   overflow-x: hidden;
   transition: all 1s ease-in-out;
@@ -67,10 +71,7 @@ button {
   justify-content: center;
   min-width: 272px;
   max-width: 272px;
-
-  &:not(:last-of-type) {
-    margin-right: 17px;
-  }
+  margin-right: 17px;
 
   img {
     max-width: 208px;
@@ -265,6 +266,52 @@ button {
   background-color: inherit;
 }
 
-@media(max-width:1056px) {
+@media(max-width:1200px) {
+  .product {
+    &-main {
+      max-width: 867px;
+      margin: 0 auto 24px;
+    }
+  }
 
+  .cards {
+    max-width: 867px;
+    margin: auto;
+  }
+}
+
+@media(max-width:927px) {
+  .product {
+    &-main {
+      max-width: 578px;
+    }
+  }
+
+  .cards {
+    max-width: 578px;
+  }
+}
+
+@media(max-width:620px) {
+  .cards {
+    max-width: 289px;
+  }
+}
+
+@media(max-width:500px) {
+  .product {
+    &-main {
+      max-width: 250px;
+      justify-content: center;
+      margin: auto;
+
+      &-title {
+        text-align: center;
+      }
+
+      &-arrow {
+        margin: 20px 0;
+      }
+    }
+  }
 }
