@@ -2,6 +2,7 @@
   color: var(--graySecondary);
   border-top: 1px solid var(--graySecondary);
   margin-top: 80px;
+  padding: 0 30px;
 
   &-container {
     max-width: 1136px;
@@ -43,6 +44,45 @@
 
     &:hover {
       border: 1px solid var(--grayPrimary);
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .footer {
+    &-back-to-top {
+
+      p {
+        display: none ;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    &-nav {
+      a {
+        &:not(:last-child) {
+          margin-right: 32px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .footer {
+    &-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      a {
+        &:not(:last-child) {
+          margin-right: 15px;
+        }
+      }
     }
   }
 }
