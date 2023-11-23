@@ -19,15 +19,21 @@
       <div class="cart-phone" *ngFor="let product of products">
         <img class="cart-phone-clear" src="./assets/img/icons/close-icon.svg" alt="close-icon" (click)="deletePhoneFromCart(product, $event)">
         <img class="cart-phone-picture" [src]="'./assets/' + product.image" alt="{{ product.name }}">
-        <p class="cart-phone-name">{{product.name}}</p>
 
-        <div class="cart-phone__choose-quantity">
-          <button class="cart-phone-minus" (click)="updateQuantity(product, false)" [disabled]="checkCartTotalAmount(product)">-</button>
-          <p class="cart-phone__quantity">{{ quantities.get(product.id) }}</p>
-          <button class="cart-phone-plus" (click)="updateQuantity(product, true)">+</button>
+        <div class="cart-phone__container--phone">
+          <p class="cart-phone-name">{{product.name}}</p>
+
+          <div class="cart-phone__container--tablet">
+            <div class="cart-phone__choose-quantity">
+              <button class="cart-phone-minus" (click)="updateQuantity(product, false)" [disabled]="checkCartTotalAmount(product)">-</button>
+              <p class="cart-phone__quantity">{{ quantities.get(product.id) }}</p>
+              <button class="cart-phone-plus" (click)="updateQuantity(product, true)">+</button>
+            </div>
+
+            <p class="cart-phone__price">${{product.price}}</p>
+          </div>
         </div>
 
-        <p class="cart-phone__price">${{product.price}}</p>
       </div>
 
     </div>
