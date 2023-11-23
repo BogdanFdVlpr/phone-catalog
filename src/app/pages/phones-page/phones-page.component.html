@@ -1,11 +1,11 @@
 <!--<app-loading *ngIf="isLoading"></app-loading>-->
+<div class="phones">
 
 <app-small-navigation></app-small-navigation>
 
 <app-no-found-content *ngIf="(productSearchService.foundProducts$ | async) === true" class="noFoundContent"></app-no-found-content>
 
 <div *ngIf="(productSearchService.foundProducts$ | async) === false">
-  <div class="phones">
     <h1>Mobile phones</h1>
     <p class="phones-quantity">{{ this.quantityPhones }} models</p>
 

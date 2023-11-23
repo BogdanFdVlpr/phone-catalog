@@ -14,7 +14,6 @@
   letter-spacing: 0.04em;
   color: var(--graySecondary);
   border-bottom: 1px solid var(--gray);
-  //border-top: 1px solid var(--graySecondary);
   padding: 0 0 0 24px;
   box-sizing: border-box;
 
@@ -59,12 +58,9 @@
 .header-icons {
   margin: auto 0;
   display: flex;
-  //border-left: 1px solid var(--graySecondary);
 }
 
 .header-icon {
-  //border-left: 1px solid var(--graySecondary);
-  //border-right: 1px solid var(--graySecondary);
   padding: 22px 24px;
   height: 19px;
   width: 19px;
@@ -78,4 +74,29 @@
   position: relative;
   top: -43px;
   left: -23px;
+}
+
+@media (max-width: 1056px) {
+  .header {
+    &-nav {
+
+      &__content{
+        display: flex;
+
+        a {
+          padding: 27px 0;
+        }
+
+        a:not(:first-child) {
+          margin-left: 25px;
+        }
+      }
+    }
+
+    &-search {
+      width: 200px;
+      padding: 24px;
+      background: url("/assets/img/icons/search-icon.svg") 170px no-repeat;
+    }
+  }
 }

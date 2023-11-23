@@ -48,7 +48,7 @@ button {
 
 .cards {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   max-width: 1156px;
   overflow-x: hidden;
   transition: all 1s ease-in-out;
@@ -289,6 +289,12 @@ button {
 
   .cards {
     max-width: 578px;
+  }
+}
+
+@media(max-width:637px) {
+  .cards {
+    justify-content: center;
   }
 }
 

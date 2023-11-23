@@ -64,3 +64,15 @@ select {
   justify-content: space-between;
 }
 
+@media(max-width:637px) {
+  .sorting {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .select {
+    width: 110px;
+  }
+}
+
