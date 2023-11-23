@@ -46,6 +46,7 @@ export class ProductsComponent implements OnInit, OnChanges {
   favoriteProducts: IProducts[] = [];
   currentPage: number = 1;
   pagination: boolean = false;
+  currentItemsOnPage: number = 16;
 
   constructor(
       public dataStateService: DataStateService,
@@ -60,6 +61,7 @@ export class ProductsComponent implements OnInit, OnChanges {
       private cartBadgeService: CartBadgeService,
       private productDetailsService: ProductDetailsService,
       private router: Router,
+
   ) {
   }
 
@@ -75,6 +77,11 @@ export class ProductsComponent implements OnInit, OnChanges {
     this.handlingInputValueService.searchValue$.subscribe(newTextFilter => {
       this.textFilter = newTextFilter;
       this.checkFoundProducts();
+    });
+
+    this.chooseItemsOnPageService.currentPage$.subscribe((newValue) => {
+      this.currentItemsOnPage = newValue
+      this.currentPage = 1;
     });
 
     setTimeout(() => {
