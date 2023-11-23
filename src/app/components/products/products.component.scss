@@ -48,7 +48,7 @@ button {
 
 .cards {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   max-width: 1156px;
   overflow-x: hidden;
   transition: all 1s ease-in-out;
