@@ -266,7 +266,7 @@ button {
   background-color: inherit;
 }
 
-@media(max-width:1200px) {
+@media(max-width:1215px) {
   .product {
     &-main {
       max-width: 867px;
@@ -277,6 +277,20 @@ button {
   .cards {
     max-width: 867px;
     margin: auto;
+  }
+
+  .cards--flex-wrap {
+    .card {
+      margin-top: 40px;
+    }
+  }
+
+  .margin-top-small {
+    margin-top: 0;
+  }
+
+  .product-main {
+    margin: 0;
   }
 }
 
