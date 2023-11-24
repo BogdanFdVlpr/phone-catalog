@@ -4,6 +4,7 @@ import {HandlingInputValueService} from "../../services/handling-input-value.ser
 import {FavouriteBadgeService} from "../../services/favourite-badge.service";
 import {CartBadgeService} from "../../services/cart-badge.service";
 import {ChangeVisibleHeaderService} from "../../services/change-visible-header.service";
+import {IProducts} from "../../models/product";
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   inputText:string = '';
   favoriteBadge!: number;
   cartBadge!: number;
+  searchInput = document.getElementsByClassName('header-search');
 
 
   constructor(
@@ -74,4 +76,15 @@ export class HeaderComponent implements OnInit {
   clearCartPageOpen() {
     this.changeVisibleHeaderService.setVisibleHeader(false)
   }
+
+  openSearchInput(event: MouseEvent) {
+    const click = event.target as HTMLElement;
+
+
+    if (click.classList.contains('header-search-button') || click.classList.contains('search-icon')) {
+      this.searchInput[0].classList.toggle('header-search--active')
+    }
+  }
+
+  protected readonly event = event;
 }

@@ -1,7 +1,21 @@
 <nav class="header" id="header">
   <div class="header-nav">
+
+    <div class="popup">
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="popup-menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+          <a mat-menu-item routerLinkActive="active-nav" routerLink="/" [routerLinkActiveOptions]="{exact: true}" (click)="clearCartPageOpen()">Home</a>
+          <a mat-menu-item routerLinkActive="active-nav" routerLink="phones">Phones</a>
+          <a mat-menu-item routerLinkActive="active-nav" routerLink="tablets">Tablets</a>
+          <a mat-menu-item routerLinkActive="active-nav" routerLink="accessories">Accessories</a>
+      </mat-menu>
+    </div>
+
     <img routerLink="/" src="./assets/img/icons/Logo.svg" alt="Logo" class="logo" (click)="clearCartPageOpen()">
-    <div class="header-nav__content" [class.display--none]="cartPageOpen">
+
+    <div class="header-nav__content header-nav__content--mobile" [class.display--none]="cartPageOpen">
       <a routerLinkActive="active-nav" routerLink="/" [routerLinkActiveOptions]="{exact: true}" (click)="clearCartPageOpen()">HOME</a>
       <a routerLinkActive="active-nav" routerLink="phones">PHONES</a>
       <a routerLinkActive="active-nav" routerLink="tablets">TABLETS</a>
@@ -9,6 +23,14 @@
     </div>
   </div>
   <div class="header-icons">
+
+    <div class="search" (click)="openSearchInput($event)">
+      <button class="header-search-button header-search-button--active" >
+        <img class="search-icon" src="./assets/img/icons/search-icon.svg" alt="">
+      </button>
+    </div>
+
+
     <input
       class="header-search"
       type="text"
@@ -17,7 +39,6 @@
       [(ngModel)]="inputText"
       (ngModelChange)="changeInputText()"
     >
-
 
     <a routerLink="favorites" [class.display--none]="cartPageOpen">
       <img routerLinkActive="active-nav" class="header-icon" src="./assets/img/icons/heart-icon.svg" alt="heart icon" >

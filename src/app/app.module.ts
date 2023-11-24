@@ -30,6 +30,8 @@ import { NoFoundContentComponent } from './components/no-found-content/no-found-
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatIconModule} from "@angular/material/icon";
 import { ProductDetailsPageComponent } from './pages/product-details-page/product-details-page.component';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
@@ -64,6 +66,7 @@ import { ProductDetailsPageComponent } from './pages/product-details-page/produc
     NgxPaginationModule,
     MatBadgeModule,
     MatIconModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
