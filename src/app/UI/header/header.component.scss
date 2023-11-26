@@ -76,6 +76,10 @@
   left: -23px;
 }
 
+.search {
+  display: none;
+}
+
 @media (max-width: 1056px) {
   .header {
     &-nav {
@@ -128,6 +132,9 @@
 
 
 @media (max-width: 800px) {
+  .search {
+    display: block;
+  }
   .header {
     &-nav {
       &__content {
