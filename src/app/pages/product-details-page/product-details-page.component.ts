@@ -72,6 +72,15 @@ export class ProductDetailsPageComponent implements OnInit {
     }
   }
 
+  chooseImg(event: MouseEvent) {
+    const choosedImg = event.target as HTMLElement;
+    let choosedImgUrl = choosedImg.getAttribute('src')
+    let mainImg = document.querySelector('.product-details__images-main')
+    if (mainImg && choosedImgUrl) {
+      mainImg.setAttribute('src', choosedImgUrl)
+    }
+  }
+
   getColor(circleColor: string): string {
     switch (circleColor) {
       case 'green':
@@ -108,4 +117,6 @@ export class ProductDetailsPageComponent implements OnInit {
         return '#000000';
     }
   }
+
+  protected readonly event = event;
 }

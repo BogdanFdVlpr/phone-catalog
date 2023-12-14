@@ -47,7 +47,7 @@ $transition_time:.2s;
     background: var(--gray);
     position: relative;
     bottom: -18px;
-    z-index: 100;
+    z-index: 1;
 
     &.visible {
       background: #000000;

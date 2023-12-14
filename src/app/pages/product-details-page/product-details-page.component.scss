@@ -90,6 +90,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    min-width: 530px;
 
     &-main {
       max-width: 442px;

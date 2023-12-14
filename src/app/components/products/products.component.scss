@@ -73,6 +73,10 @@ button {
   max-width: 272px;
   margin-right: 17px;
 
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+
   img {
     max-width: 208px;
     max-height: 208px;

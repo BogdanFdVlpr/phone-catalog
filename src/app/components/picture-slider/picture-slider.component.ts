@@ -14,7 +14,10 @@ export class PictureSliderComponent {
   ];
 
   index = 0;
+  speed = 2000;
   infinite = true;
+  direction = 'right';
+  autoplay = true;
 
   constructor() { }
 

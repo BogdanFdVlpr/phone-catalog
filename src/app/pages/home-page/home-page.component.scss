@@ -17,6 +17,9 @@ h1 {
 
   &-card {
 
+
+
+
     &:not(:last-child) {
       margin-right: 16px;
     }
@@ -25,6 +28,12 @@ h1 {
       max-width: 368px;
       max-height: 368px;
       object-position: top;
+      transition: all 0.5s;
+
+      &:hover {
+        transform: scale(1.05);
+        transition: transform .5s;
+      }
     }
   }
 

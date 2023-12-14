@@ -207,6 +207,8 @@ h1  {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s;
+
 
   &-container {
     display: flex;
@@ -220,7 +222,8 @@ h1  {
   }
 
   &--hidden {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
   }
 }
 
